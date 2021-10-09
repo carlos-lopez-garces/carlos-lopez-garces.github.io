@@ -1,0 +1,7 @@
+---
+layout: post
+title:  "WebGPU"
+---
+I first heard of WebGPU a few days ago. In essence, WebGPU is a Javascript API that interfaces with Vulkan, D3D12 and Metal, all of which were designed for modern GPUs. WebGPU will one day supersede WebGL, so we'd better check it out. WebGL was designed with the GPU computation model of the last decade. Since then, GPU technology has advanced. WebGPU intends to use the modern computation model.
+
+[Dawn](https://dawn.googlesource.com/dawn/) is a WIP implementation for Chromium of the WIP [WebGPU standard](https://gpuweb.github.io/gpuweb/#intro). There is a [Ray Tracing extension](https://github.com/maierfelix/dawn-ray-tracing) for Dawn that uses DXR (or VK_KHR_ray_tracing). The extension's API spec is [here](https://github.com/maierfelix/dawn-ray-tracing/blob/master/RT_SPEC.md) and [here's](http://maierfelix.github.io/2020-01-13-webgpu-ray-tracing/) a tutorial. And I guess you build it by [building Chromium first](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/windows_build_instructions.md#visual-studio).
