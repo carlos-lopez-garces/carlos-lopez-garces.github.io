@@ -12,12 +12,8 @@ No single technique for reflections suffices. Unreal Engine uses a combination o
 
 When a mesh is close enough to the actor and it has a reflective material, the draw call of that mesh + material will use the captured images in the GBuffer composite frame. "Close enough" means that the mesh is within the range of the actor; objects beyond the range of the actor do not participate in the capture.
 
-***The range of the actor: the floor is within the range of the actor,***
-{: style="text-align: center;"}
-***so it uses its captured reflections; the capture includes only 5 of the 7 pillars and the teapot,***
-{: style="text-align: center;"}
-***because the other 2 pillars are beyond the range***
-{: style="text-align: center;"}
+***The range of the actor: the floor is within the range of the actor, so it uses its captured reflections; the capture includes only 5 of the 7 pillars and the teapot, because the other 2 pillars are beyond the range***
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-05-10-reflections-in-ue4/1.png)
 {: style="text-align: center;"}
@@ -26,10 +22,8 @@ These images are ***baked*** into the actor when loading the level and are ***no
 
 The baked reflections only make sense from the POV that the camera had when they were built, and will cease to make sense when the camera moves.
 
-***When the camera is not placed where the static capture actor is,***
-{: style="text-align: center;"}
-***the reflections of the pillars don't make sense***
-{: style="text-align: center;"}
+***When the camera is not placed where the static capture actor is, the reflections of the pillars don't make sense***
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-05-10-reflections-in-ue4/2.png)
 {: style="text-align: center;"}
