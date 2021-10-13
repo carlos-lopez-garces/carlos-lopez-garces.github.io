@@ -10,22 +10,22 @@ One thing that forward does better than deferred is ***antialiasing***. Deferred
 
 The use of the ***GBuffer*** in deferred rendering is a form of ***real-time image compositing***: the frame is the end result of a combination of different temporary frames (or render targets), each of which stores a particular kind of information per pixel: depth, normal, metalness, roughness, specularity, diffuse, etc. The GBuffer is this collection of buffers.
 
-***Normals***
-{: style="text-align: center;"}
-
 ![](/assets/2020-04-11-deferred-and-forward-rendering-in-ue4/1.png)
 {: style="text-align: center;"}
 
-***Depth***
+***Normals***
 {: style="text-align: center;"}
 
 ![](/assets/2020-04-11-deferred-and-forward-rendering-in-ue4/2.png)
 {: style="text-align: center;"}
 
-***Screen-space reflections***
+***Depth***
 {: style="text-align: center;"}
 
 ![](/assets/2020-04-11-deferred-and-forward-rendering-in-ue4/3.png)
+{: style="text-align: center;"}
+
+***Screen-space reflections***
 {: style="text-align: center;"}
 
 These frames were captured using [Renderdoc](https://renderdoc.org/).
