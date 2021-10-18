@@ -28,9 +28,18 @@ twitter_username: clopezgarces
 github_username:  carlos-lopez-garces
 
 # Build settings
-theme: minima
+remote_theme: jekyll/minima
+
 plugins:
+  - jekyll-remote-theme # allows you to use the jekyll/minima theme from master 
   - jekyll-feed
+  - jekyll-katex
+
+katex:
+  rendering_options:
+    # Default KaTeX rendering options. See https://github.com/Khan/KaTeX#rendering-options
+    throw_error: true                       # throwOnError - set to false if you want rendering to output error as text rather than a build error
+    error_color: "#cc0000"                  # errorColor
 
 # Exclude from processing.
 # The following items will not be processed, by default.

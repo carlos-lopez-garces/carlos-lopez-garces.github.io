@@ -29,3 +29,11 @@ end
 gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 
 gem "github-pages", "~> 219", group: :jekyll_plugins
+
+group :jekyll_plugins do
+  gem 'jekyll-katex'
+end
+
+# Allows you to use the minima theme from the master branch (master allows you to have
+# _includes/custom-head.html).
+gem "jekyll-remote-theme"
