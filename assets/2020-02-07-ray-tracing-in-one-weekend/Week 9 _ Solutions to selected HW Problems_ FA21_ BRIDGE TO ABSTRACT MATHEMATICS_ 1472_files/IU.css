@@ -1,0 +1,116 @@
+/* 
+E. Scull - eDS
+General IU colors and logo handled in Theme Editor. 
+More targeted styles, hiding specific buttons for example, remain here.
+
+NOTE: Canvas has an existing CSS class called .screenreader-only, so we don't need to create our own class for this function.
+If that class is ever changed or removed, we'd need to replicate it here.
+*/
+
+/* From https://training.instructure.com/courses/179378/pages/module-2-additional-course-customization. */
+/* Hide Delete this course button */
+#right-side a[href*="event=delete"] {
+        display: none !important;
+}
+
+/* Hide the Conclude this Course button */
+#right-side a[href*="event=conclude"] {
+        display: none !important;
+}
+
+/* Hide the "Add App" button under Settings > Apps */
+.AddExternalToolButton {display:none !important;}
+
+
+/* In the JS file, we're switching the "New Access Token" button to open our form in a new tab, rather than popup the default modal form on the click event.
+   Hide the auto-generated external link icon that appears when target _blank is set. */
+a.add_access_token_link span.ui-icon-extlink {
+    display:none !important;
+}
+
+/* hide the "Start a New Course" button */
+#start_new_course {
+  display:none !important;
+}
+
+/* hide the "Start a New Course" LTI tool link on Profile > Settings page. 
+   Note, we're also removing the parent <li> using JS to prevent an empty <li> from taking up space in the nav. But this rule prevents the flickering of the link appearing/disappearing on page load. */
+a.context_external_tool_100230 { 
+    visibility: hidden;
+}
+
+/* Hide the Multicourse Messenges tool on the Profile page.
+   Note, we're also removing the parent <li> using JS to prevent an empty <li> from taking up space in the nav. But this rule prevents the flickering of the link appearing/disappearing on page load. */
+a.context_external_tool_175133 {
+  visibility: hidden;
+}
+
+/* Hide the 'star' next to the email addresses in the right column of the Profile > Settings page */
+td.email_meta > a { 
+    display:none !important;
+}
+
+/* Style the AdRx 'Send to my Advisor' button and status */
+a#adrx-submit,
+div#adrx-status {
+    margin:1em 0 1em;
+}
+
+
+/* notification badge on the eAdd/eDrop button for Instructors */
+.eAdd-badge {
+  float: left;
+  padding: 0 6px;
+  margin: 0 5px 0 0;
+  border-radius: 50%;
+  background: #df3234;
+  color: #ffffff;
+  text-align: center;
+  font-size: .9em;
+}
+
+/* Hide the original cross-listing buttons */
+.crosslist_link, .uncrosslist_link {display: none !important;}
+
+/* Syllabus addendum styles */
+.iu-eds-syllabus-addendum-wrapper details summary h2 {
+  font-size:1em;
+  display: inline;
+  cursor: pointer;
+}
+.iu-eds-syllabus-addendum-wrapper details summary {
+  color:#006298;
+  font-size: 1.8em;
+  outline:none;
+}
+.iu-eds-syllabus-addendum-block {
+  margin-bottom:2em;
+}
+
+/* Hide Integrations tab on Course Settings page, per Justin 2/25/2021 */
+#integrations_tab {
+  display:none;
+}
+
+
+
+/* eDS styles, in support of course development */
+
+/* Give summary tags the pointer on hover */
+summary {
+  cursor:pointer;
+}
+
+/* hide page title. Requires DOM manipulation after postMessage to add the .eds-hide-page-title class */
+.eds-hide-page-title .page-title {
+	display: none;
+}
+
+/* Utility classes */
+
+/*https://css-tricks.com/snippets/css/clear-fix/*/
+.iu-eds-group-clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
