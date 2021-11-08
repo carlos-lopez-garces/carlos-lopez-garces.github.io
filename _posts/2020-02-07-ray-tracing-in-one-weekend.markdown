@@ -483,3 +483,61 @@ $$\sin\theta'$$ has a range of $$[-1, 1]$$, so the left side of the equation has
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/57.jpg)
 {: style="text-align: center; padding-bottom: 15px;"}
+
+$$2h$$ is the height of the viewport. The width of the viewport is obtained from the height by multiplying it by the aspect ratio.
+
+Focal length has an inverse relation to the angle of view and the magnification of the image:
+
+- As focal length gets longer, the angle of view becomes narrower and the scene appears magnified.
+- As focal length gets shorter, the angle of view becomes wider and the scene is magnified less.
+
+*Vertical FOV of $$45\degree$$*
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
+
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/60.png)
+{: style="text-align: center; padding-bottom: 15px;"}
+
+*Vertical FOV of $$90\degree$$*
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
+
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/61.png)
+{: style="text-align: center; padding-bottom: 15px;"}
+
+*Vertical FOV of $$135\degree$$*
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
+
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/62.png)
+{: style="text-align: center; padding-bottom: 15px;"}
+
+*Vertical FOV of $$170\degree$$*
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
+
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/63.png)
+{: style="text-align: center; padding-bottom: 15px;"}
+
+*Vertical FOV of $$180\degree$$*
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
+
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/64.png)
+{: style="text-align: center; padding-bottom: 15px;"}
+
+The ***orientation*** of the camera can be expressed with an ***orthonormal basis*** $$(u, v, w)$$, where
+
+- $$w$$ is $$−(lookat−lookfrom)$$;
+
+- $$u$$ is orthogonal to the plane formed by $$w$$ and $$v_{up}$$ (view up). $$v_{up}$$ can be any vector, but $$(0, 1, 0)$$ is typically used. $$u$$ is $$v_{up} \times w$$; the cross product produces a vector that is orthogonal to the plane of the other 2. Note that these 2 input vectors don't need to be ortoghonal to each other;
+
+- $$v$$ is $$w \times u$$.
+
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/65.jpg)
+{: style="text-align: center; padding-bottom: 15px;"}
+
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/66.png)
+{: style="text-align: center; padding-bottom: 15px;"}
+
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/67.png)
+{: style="text-align: center; padding-bottom: 15px;"}
+
+Now, ***focus*** and ***depth of field***. In virtual cameras, everything is in focus. If you want to simulate a physical camera, though, you need to simulate ***blur***. There is a plane in the scene that the camera will capture in perfect focus. The rest of the planes will be blurred. The distance from the camera to this ***camera focus plane*** is the focus distance (not to be confused with the ***focal length***).
+
+Blur is achieved in a way similar to antialiasing, i.e. by jittering the ray direction vector. For antialiasing, you randomize the destination point of the ray. For blur, you randomize the source and point of the ray.
