@@ -9,20 +9,16 @@ This post isn't a summary of the book; the [1000 Forms Of Bunnies](http://viclw1
 
 The source code is available in my repo [github.com/carlos-lopez-garces/ray](https://github.com/carlos-lopez-garces/ray).
 
-## Intro
+![](/assets/2020-02-07-ray-tracing-in-one-weekend/0.jpg)
+{: style="text-align: center;"}
 
-Indirect lighting is one of the most important features provided by ray tracing.
+### Intro
 
-~~Always start with a plain text ppm file for outputting images.~~
+Indirect lighting is one of the most important effects implemented by ray tracing. Not only will objects illuminated directly by a light source have their color revealed, also those that are reached by light that bounces off of the surface of others or that passes through those others. 
 
-~~High dynamic range does not restrict the range of the RGB components (say, it doesn't restrict them to a range from 0 to 255).~~
+### Ray tracing algorithm
 
-~~Mapping the values of the RGB components to a restricted range is called tone mapping. For example, mapping the values of the RGB components to the 0-1 range.~~
-
-## Ray tracing algorithm
-
-The ray tracing algorithm samples the radiance of light that light sources emit and that travels and bounces around the scene until it reaches the camera. 
-At a very high level, the ray tracing algorithm goes something like this:
+The ray tracing algorithm samples the radiance of light that light sources emit and that travels and bounces around the scene until it reaches the camera. At a very high level, the ray tracing algorithm goes something like this:
 
 	1. Shoot a ray from the camera to a pixel.
 
@@ -43,29 +39,31 @@ At a very high level, the ray tracing algorithm goes something like this:
 
 This, of course, is an oversimplification that omits important steps.
 
-## Rays
+### Rays
 
-A ray is a vector-valued function $$\bm{r}(t) = \bm{o} + t\bm{d}$$, where $$\bm{o}$$ is the origin point of the ray, $$t$$ is the parameter and $$d$$ is the direction vector. The function's value at each value of the parameter is a point along the ray.
+A ray is a vector-valued function $$\bm{r}(t) = \bm{o} + t\bm{d}$$, where $$\bm{o}$$ is the origin point of the ray, $$t$$ is the parameter and $$\bm{d}$$ is the direction vector. The function's value at each value of the parameter is a point along the ray.
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/1.jpg)
 {: style="text-align: center;"}
 
-## Linear interpolation
+### Linear interpolation
 
-This first rendered image is a gradient from one color to another; a linear interpolation, or ***lerp***, of 2 colors, e.g. white at 0.0 and sky blue at 1.0, and the values in between blend the 2 of them. The value of the $$t$$ parameter is determined by the pixel's $$v$$ coordinate:
+The first image that you'll render is a gradient from one color to another; a linear interpolation, or ***lerp***, of 2 colors, e.g. white at 0.0 and sky blue at 1.0, and the values in between blend the 2 of them. The value of the $$t$$ parameter is determined by the pixel's $$v$$ coordinate:
 
 $$\bm{blendedColor} = (1-\bm{t}) \sdot startColor + \bm{t} \sdot endColor$$
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/3.png)
 {: style="text-align: center;"}
 
-## Ray-sphere intersection
+### Ray-sphere intersection
+
+Scenes in book 1 consist of spheres exclusively, so it's necessary to know how to intersect them.
 
 The equation of a sphere centered at the origin is $$x^2+y^2+z^2=R^2$$:
 
-- Any point (x,y,z) that satisfies the equation lies on the surface of the sphere.
+- Any point $$(x,y,z)$$ that satisfies the equation lies on the surface of the sphere.
 
-- Any point (x,y,z) that satisfies the inequality $$x^2+y^2+z^2<R^2$$ is inside the sphere.
+- Any point $$(x,y,z)$$ that satisfies the inequality $$x^2+y^2+z^2<R^2$$ is inside the sphere.
 
 When the sphere is not centered at the origin, but at a point $$C$$, the equation becomes $$(x-C_x)^2+(y-C_y)^2+(z-C_z)^2=R^2$$.
 
@@ -76,7 +74,7 @@ The point $$p'=(x-C_x, y-C_y, z-C_z)$$ is the translation of point $$p=(x, y, z)
 
 In vector form, the equation of the sphere becomes $$(P-C)\sdot(P-C)=R^2$$. Recall that the dot product is the sum of the component-wise multiplication. In this case, it is the sum of the square of each component of vector $$P-C$$, which, as seen in the picture above, yields a point on the sphere centered at the origin when that point satisfies the equation.
 
-Now, recall that a ray is a vector-valued function $$\bm{r}(t) = \bm{o} + t\bm{d}$$. We want to know if the ray intersects the sphere, i.e. we want to know if there is a t where p(t)  satisfies the equation of the sphere: $$(p(t)-C)\sdot(p(t)-C)=R^2$$.
+Now, recall that a ray is a vector-valued function $$\bm{r}(t) = \bm{o} + t\bm{d}$$. We want to know if the ray intersects the sphere, i.e. we want to know if there is a $$t$$ such that $$\bm{r}(t)$$ satisfies the equation of the sphere: $$(\bm{r}(t)-C)\sdot(\bm{r}(t)-C)=R^2$$.
 
 When expanding and regrouping the equation, it is revealed that the equation is quadratic: 
 
@@ -97,9 +95,9 @@ $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 
 $$t=\frac{-\{2B \sdot (A-C)\}\pm\sqrt{\{2B \sdot (A-C)^2\} - 4(B \sdot B)\{(A-C) \sdot (A-C) - R^2\}}}{2(B \sdot B)}$$
 
-But we are not interested in the actual intersection point, only in whether there is one. The ***discriminant's*** sign tells you the number of roots: none if negative (the square root doesn't give a real number), 1 if 0 (the square root of 0 is only 0), 2 if positive (the square root of a positive number ). The discriminant is defined as follows: *a function of the coefficients of a polynomial equation whose value gives information about the roots of the polynomial*. ([There is so much more to the discriminant](https://mathworld.wolfram.com/PolynomialDiscriminant.html).)
+But we are not interested in the actual intersection point, only in whether there is one. The ***discriminant's*** sign tells you the number of roots: none if negative (the square root doesn't give a real number), 1 if 0 (the square root of 0 is only 0), 2 if positive (the square root of a positive number). ([There is so much more to the discriminant](https://mathworld.wolfram.com/PolynomialDiscriminant.html).)
 
-## Surface normals
+### Surface normals
 
 If we want to shade the sphere, we'll need to compute the intersection points, by substituting $$t$$ in the ray vector function $$\bm{r}(t) = \bm{o} + t\bm{d}$$ with the values of the roots. The root that yields the closest intersection point to the camera is the one that the ray should use to sample the sphere (the other one will be occluded by the sphere itself).
 
@@ -125,25 +123,23 @@ Here, the color sampled by each ray is given by the normal of the surface:
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/8.png)
 {: style="text-align: center;"}
 
-## Front faces and back faces
+### Front faces and back faces
 
 For certain kinds of objects, it's important to be able to tell if, at a given hit point, the ray is coming from inside the surface or outside the surface. For most opaque surfaces, the only hit point that matters is the one where the ray is coming from outside the surface. In some translucent objects, though, like balls of glass, the other hit point also matters.
 
-One way to tell is to look at the relative directions of the normal and the ray: if they go in opposite directions about a line tangent to the surface, then the ray is ***incoming*** and comes from outside the surface; if they go in the same general direction about the tangent line, the ray is ***outgoing*** and comes from inside the surface.
-
-The sign of the cosine of the angle between the normal and the ray tells you: affixing the normal and the tangent line, if the angle between the normal and the ray is between $$90\degree$$ and $$270\degree$$ ($$\pi/2$$ and $$3\pi/2$$), the ray is on the other side of the tangent line; if the angle is between $$270\degree$$ and $$90\degree$$, the ray is on the same side of the tangent line as the normal:
+One way to tell is to look at the relative directions of the normal and the ray: if they go in opposite directions about a line tangent to the surface, then the ray is ***incoming*** and comes from outside the surface; if they go in the same general direction about the tangent line, the ray is ***outgoing*** and comes from inside the surface. If the angle between the normal and the ray is between $$90\degree$$ and $$270\degree$$ ($$\pi/2$$ and $$3\pi/2$$), the ray is on the other side of the tangent line; if the angle is between $$270\degree$$ and $$90\degree$$, the ray is on the same side of the tangent line as the normal.
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/9.jpg)
 {: style="text-align: center;"}
 
-As always, we use $$r(t) \sdot N$$ to compute the cosine of the angle between the ray and the normal. If we divide the plane in 4 quadrants, aligning the horizontal axis with the ray vector (and forgetting about the tangent line for a second), we see that the cosine is negative in quadrants II and III, and positive in quadrants IV and I. 
+As always, we use $$r(t) \sdot N$$ to compute the cosine of the angle between the ray and the normal. If we divide the plane in 4 quadrants, aligning the horizontal axis with the ray vector (and forgetting about the tangent line for a second), we see that the cosine is negative in quadrants II and III, and positive in quadrants IV and I. The sign thus tells us the side the ray is coming from.
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/10.jpg)
 {: style="text-align: center;"}
 
-## Antialiasing
+### Antialiasing
 
-Aliasing is the jaggies along edges. Aliasing is solved by averaging multiple samples inside each pixel.  ***Stratified sampling*** is usually used.
+Aliasing is the result of sampling at a rate that doesn't match the frequency content of the scene. Here, aliasing is lessened by averaging multiple samples inside each pixel.
 
 ***One sample per pixel***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
@@ -159,18 +155,20 @@ Aliasing is the jaggies along edges. Aliasing is solved by averaging multiple sa
 
 When using a single sample per pixel, you are typically using the color of the object intersected by a ray that passes through one of the corners of the pixel or by its center.
 
-For a given pixel, antialiasing samples the scenes with multiple rays, each passing through the pixel at random $$(u, v)$$ offsets. The colors sampled by these rays are then averaged to produce the final color for the pixel.
+For a given pixel, our antialiasing solution samples the scene with multiple rays, each passing through the pixel at random $$(u, v)$$ offsets. The colors sampled by these rays are then averaged to produce the final color for the pixel.
 
 ***Multiple random samples of a single pixel***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/13.jpg)
 {: style="text-align: center;"}
 
-## Diffuse materials
+### Diffuse materials
 
-Diffuse objects reflect rays of light in random directions.
+We now turn our attention to the first reflection model implemented in book 1: diffuse.
 
-Diffuse objects that don't emit light merely take on the color of their surroundings, but they modulate it with their own intrinsic color. Light that ***bounces off*** a surface has its direction randomized (the fact that the direction of the view ray doesn't influence the ray's outgoing direction makes this model a omnidirectional scattering one). And some light may be absorbed by the object (dark surfaces absorb more light than light surfaces).
+Diffuse objects reflect light in random directions. Light that ***bounces off*** a surface has its direction randomized; the fact that the direction of the view ray doesn't influence the ray's outgoing direction makes this model an ***omnidirectional scattering*** one. 
+
+Diffuse objects that don't emit light merely take on the color of their surroundings, but they modulate it with their own intrinsic color. Some light may be absorbed by the object too (dark surfaces absorb more light than light surfaces).
 
 ***Random scattering***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
@@ -178,7 +176,7 @@ Diffuse objects that don't emit light merely take on the color of their surround
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/14.jpg)
 {: style="text-align: center;"}
 
-This is how you randomize the bounce of the ray: Place a ***unit radius sphere*** tangential to the surface hitpoint $$p$$. This sphere has its center at $$p + N$$, when the ray comes from outside the surface, or $$p - N$$, when it comes from inside, where $$N$$ is the normal. Since the normal is a unit vector, the sphere has a unit radius. Now pick a random point $$s$$ on the surface of the sphere and send a ray from the hitpoint $$p$$ to the random point $$s$$ to sample the color of the object that it intersects. Finally, mix this color with the object's color.
+This is how you randomize the bounce of the ray: place a ***unit radius sphere*** tangential to the surface hitpoint $$p$$. This sphere has its center at $$p + N$$, when the ray comes from outside the surface, or $$p - N$$, when it comes from inside. Since the normal is a unit vector, the sphere has a unit radius. Now pick a random point $$s$$ on the surface of the sphere and send a ray from the hitpoint $$p$$ to the random point $$s$$ to sample the color of the object that it intersects. Finally, mix this color with the object's color.
 
 ***Ray bounces in the direction of a random point on the unit sphere***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
@@ -229,16 +227,14 @@ Increase the ***number of bounces by recursively tracing the ray*** until it doe
 
 The color of a hitpoint whose ray bounces too many times (without ever going off into the background) ***tends to black***: it's more evident when objects don't have an intrinsic color, and the only colors to sample from are the background's and the black of a ray that bounces past the maximum limit.
 
-The area near the point of contact of the sphere and the ground is interesting:
+The area near the point of contact of the sphere and the ground is interesting: a faint shadow forms because rays there are very likely to keep bouncing between the 2 surfaces, darkening the ray's sample by absorption (-50% per bounce in this scene). 
 
-	- A faint shadow forms because rays there are very likely to keep bouncing between the 2 surfaces, darkening the ray's sample by absorption (-50% per bounce in this scene).
-
-Most of the rays in this area must be sampling the back faces (the interior) of the sphere. **WRONG:** I originally thought this because I was thinking that the origin point of the bounce was the center of the tangential unit sphere, which may indeed lie in the interior of the scene's sphere; but the origin is really on the ground surface.
+I originally thought that most of the rays in this area must be sampling the back faces (the interior) of the sphere but I was wrong. I thought this because I was thinking that the origin point of the bounce was the center of the tangential unit sphere, which may indeed lie in the interior of the scene's sphere; but the origin is really on the ground surface.
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/22.png)
 {: style="text-align: center;"}
 
-It's very subtle, but the render suffers from ***shadow acne***: The reflected ray intersects its origin surface because its origin is not exactly $$t=0$$ but some floating point approximation that causes it to be below the surface sometimes.
+It's very subtle, but the render suffers from ***shadow acne***: the reflected ray intersects its origin surface because its origin is not exactly $$t=0$$ but some floating point approximation that causes it to be below the surface sometimes.
 
 The ray will bounce off its origin surface and this extra bounce will half the origin point's color, causing it to appear darker than the surrounding points.
 
@@ -248,9 +244,9 @@ The ray will bounce off its origin surface and this extra bounce will half the o
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/23.jpg)
 {: style="text-align: center;"}
 
-You can pick the bounce's direction in several ways:
+As to how to select the bounce's direction without sampling a directional distribution of the surface, you can do it in several ways:
 
-- ***Axis-aligned unit cube:*** Bounce in the direction of a random point on the surface of a unit cube centered at a distance of 1 from the hit point in the direction of the normal. The problem of doing it this way is that the cube may penetrate the surface at certain hit points and the sampled point may be inside the surface; the bounce ray would then head towards the interior of the surface, and once inside, the ray can't escape: it will keep bouncing until it reaches the limit, its color tending to black with each bounce.
+- ***Axis-aligned unit cube:*** bounce in the direction of a random point on the surface of a unit cube centered at a distance of 1 unit from the hit point in the direction of the normal. The problem of doing it this way is that the cube may penetrate the surface at certain hit points and the sampled point may be inside the surface; the bounce ray would then head towards the interior of the surface, and once inside, the ray can't escape: it will keep bouncing until it reaches the limit, its color tending to black with each bounce.
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/24.jpg)
 {: style="text-align: center; padding-bottom: 15px;"}
@@ -258,7 +254,7 @@ You can pick the bounce's direction in several ways:
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/25.png)
 {: style="text-align: center;"}
 
-- ***Tangential unit sphere:*** All rays bounce away from the surface.
+- ***Tangential unit sphere:*** all rays bounce away from the surface.
 	
   Note that all bounces are contained by a cone and that no ray will ever bounce outside this cone; ***I don't know what the consequences of that are***, all I know is that the scattering angle computed by the Lambertian model (a mathematical approximation of diffuse scattering) tends to be close to the angle of the normal (i.e. the majority of rays are scattered with angles that approximate the normal, while fewer are scattered at shallow angles w.r.t. to the surface). So this simpler unit sphere scattering approximation is similar to Lambert in this sense.
 	
@@ -270,7 +266,7 @@ You can pick the bounce's direction in several ways:
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/27.png)
 {: style="text-align: center;"}
 
-- ***Cylinder of length 1:*** The problem with sampling a unit sphere is that the resulting direction is biased towards the normal and that ***grazing angles*** are produced with very low probability. Sampling a cylinder produces a more uniform result. The result is evident near the contact point of the spheres: it is darker in the unit sphere case because more rays will bounce in the direction of the normal and are bound to hit the other surface and bounce back, and with each bounce there's more absorption; it is lighter in the cylinder case because more rays escape towards the background at grazing angles, without hitting the other surface. ***This is supposed to be the correct way to render diffuse surfaces according to the Lambert model.***
+- ***Cylinder of length 1:*** the problem with sampling a unit sphere is that the resulting direction is biased towards the normal and that ***grazing angles*** are produced with very low probability. Sampling a cylinder produces a more uniform result. The result is evident near the contact point of the spheres: it is darker in the unit sphere case because more rays will bounce in the direction of the normal and are bound to hit the other surface and bounce back, and with each bounce there's more absorption; it is lighter in the cylinder case because more rays escape towards the background at grazing angles, without hitting the other surface. ***This is supposed to be the correct way to render diffuse surfaces according to the Lambert model.***
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/28.png)
 {: style="text-align: center; padding-bottom: 15px;"}
@@ -278,7 +274,7 @@ You can pick the bounce's direction in several ways:
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/29.png)
 {: style="text-align: center;"}
 
-- ***Hemisphere of tangential unit sphere:*** Sample the unit sphere that is tangential to the surface at the hit point and reverse the direction of the resulting vectors that sample the lower hemisphere.
+- ***Hemisphere of tangential unit sphere:*** sample the unit sphere that is tangential to the surface at the hit point and reverse the direction of the resulting vectors that sample the lower hemisphere.
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/30.png)
 {: style="text-align: center; padding-bottom: 15px;"}
@@ -286,44 +282,43 @@ You can pick the bounce's direction in several ways:
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/31.png)
 {: style="text-align: center;"}
 
-## Lambert material
+### Lambert material
 
 Lambert is a physically-correct model for diffuse materials.
 
 Attenuation can be implemented in 2 ways:
 
-	- By absorbing completely a fraction of the rays (with a given probability) and not attenuating the ones that do get scattered/reflected.
+	- By absorbing completely a fraction of the rays (with a given probability) and not
+	  attenuating the ones that do get scattered/reflected.
 	- By scattering/reflecting all the rays, but diminishing their color.
 
-These are 2 forms of ***albedo***. The albedo of a surface is the proportion of the incident light or radiation that it reflects.
+The concept of albedo enters the picture. The albedo of a surface is the proportion of incident light or radiance that it reflects.
 
 ***Small sphere with albedo (0.5, 0.5, 0.5)***
 {: style="text-align: center; width: 70%; margin: 0 auto;"}
 ***Big sphere with albedo (0.2, 0.2, 0.2)***
-{: style="text-align: center; width: 70%; margin: 0 auto;"}
-***This was more attenuation than full absorption of rays***
-{: style="text-align: center; width: 70%; margin: 0 auto;"}
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;""}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/32.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-***Same, but with different base colors***
+***With different base colors***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/33.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-***Same, but with same base colors***
+***With the same base colors***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/34.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-## Metal/mirror material
+### Metal/mirror material
 
 A perfectly smooth reflective surface, like a mirror or smooth metal, reflects rays at the same angle of incidence.
 
-$$v \sdot N$$ is the length of the ***scalar projection*** of $$v$$ onto $$N$$, depicted here as $$B$$. $$B$$ can also be seen as the unit vector $$N$$ scaled by $$v \sdot N$$ and thus as the vector component of $$v$$ that goes in the direction of $$N$$. How is the red vector of the reflected ray computed? Place $$v$$ at the hit point; it will point into the surface. Add $$B$$ to it; the result $$v+B$$ is a vector that is tangential to the surface and perpendicular to the normal $$N$$. Add $$B$$ again; the result is a vector that forms a right angle with $$v$$.
+$$v \sdot N$$ is the length of the ***scalar projection*** of $$v$$ onto $$N$$, depicted here as $$B$$. $$B$$ can also be seen as the unit vector $$N$$ scaled by $$v \sdot N$$ and thus as the vector component of $$v$$ that goes in the direction of $$N$$. How is the vector of the reflected ray computed? Place $$v$$ at the hit point; it will point into the surface. Add $$B$$ to it; the result $$v+B$$ is a vector that is tangential to the surface and perpendicular to the normal $$N$$. Add $$B$$ again; the result is a vector that forms a right angle with $$v$$.
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/35.jpg)
 {: style="text-align: center;"}
@@ -378,47 +373,48 @@ Randomize the tip of the reflected ray by sampling a point on the surface of a s
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/44.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-# Diffuse, metallic, and fuzzy
+### Diffuse, metallic, and fuzzy
 
-The metallic ball's albedo is full white, so it doesn't absorb/attenuate, the ball reflects the exact colors
+Now we'll see the effects of having the 3 materials in the scene at the same time.
+
+***The metallic ball's albedo is full white, so it doesn't absorb/attenuate; the ball reflects the exact colors.***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/46.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-The metallic ball's albedo is 0.9, 0.9, 0.9, so it attenuates the reflection a little, giving the ball itself some definition
+***The metallic ball's albedo is 0.9, 0.9, 0.9, so it attenuates the reflection a little, giving the ball itself some definition.***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/47.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-The metallic ball's albedo is 0.2, 0.2, 0.2
+***The metallic ball's albedo is 0.2, 0.2, 0.2.***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/48.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-The metallic ball's albedo is full black. The fuzzy ball's albedo I full white.
+***The metallic ball's albedo is full black. The fuzzy ball's albedo is full white.***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/49.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-All three's albedos are black
+***All albedos are black.***
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/50.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-# Dielectrics and refraction
+### Dielectrics and refraction
 
 Dielectrics split a ray into a reflected ray and a refracted ray (the reflected ray is for tinting the surface with the color of nearby surfaces; the refracted ray is for sampling what's behind the dielectric surface and make it visible through it).
-
-The scene should look upside down when seen through a ball of glass.
 
 There is a relation between the angle of incidence and the angle of refraction and is ruled by the ***refractive indices*** of the media: a ray gets refracted when it transitions from one medium to another; each of these media have its own characteristic refractive index.
 
 $$\eta \sin\theta= \eta' \sin\theta'$$ *(Snell's law)*
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/51.jpg)
 {: style="text-align: center; padding-bottom: 15px;"}
@@ -430,6 +426,7 @@ $$\sin\theta'=\frac{\eta}{\eta'}\sin\theta$$
 In ray tracing, we usually don't know the angles, but we do know the incident ray's vector $$v$$. If $$v$$ is normalized:
 
 $$1=\sqrt{1\cos\theta^2+1\sin\theta^2}$$ *(Pythagorean theorem)*
+{: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 Since $$v$$ and $$N$$ are normalized:
 
@@ -479,17 +476,19 @@ $$\sin\theta'$$ has a range of $$[-1, 1]$$, so the left side of the equation has
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/56.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-# Positionable camera
+### Positionable camera
+
+$$2h$$ is the height of the viewport. The width of the viewport is obtained from the height by multiplying it by the aspect ratio.
 
 ![](/assets/2020-02-07-ray-tracing-in-one-weekend/57.jpg)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-$$2h$$ is the height of the viewport. The width of the viewport is obtained from the height by multiplying it by the aspect ratio.
-
 Focal length has an inverse relation to the angle of view and the magnification of the image:
 
-- As focal length gets longer, the angle of view becomes narrower and the scene appears magnified.
-- As focal length gets shorter, the angle of view becomes wider and the scene is magnified less.
+	- As focal length gets longer, the angle of view becomes narrower and the scene appears
+	  magnified.
+	- As focal length gets shorter, the angle of view becomes wider and the scene is magnified
+	  less.
 
 *Vertical FOV of $$45\degree$$*
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
