@@ -30,6 +30,12 @@ github_username:  carlos-lopez-garces
 # Build settings
 remote_theme: jekyll/minima
 
+minima:
+  social_links:
+    twitter: clopezgarces
+    github: carlos-lopez-garces
+    linkedin: clopezgarces
+
 plugins:
   - jekyll-remote-theme # allows you to use the jekyll/minima theme from master 
   - jekyll-feed
