@@ -43,6 +43,10 @@ p {
   @extend .color-transition;
 }
 
+ul {
+  list-style-type: circle;
+}
+
 .content img, .img,
 .content video, .video {
   max-width: 100%;

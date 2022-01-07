@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "First ray tracer: Ray Tracing in One Weekend"
-katexmm: True
 ---
 [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html) by [Peter Shirley](https://twitter.com/Peter_shirley) must be the best end-to-end introduction to ray tracing out there: it's accesible enough for beginners, but sufficiently rigorous to lead to a correct implementation.
 
@@ -41,7 +40,7 @@ This, of course, is an oversimplification that omits important steps.
 
 ### Rays
 
-A ray is a vector-valued function $$\bm{r}(t) = \bm{o} + t\bm{d}$$, where $$\bm{o}$$ is the origin point of the ray, $$t$$ is the parameter and $$\bm{d}$$ is the direction vector. The function's value at each value of the parameter is a point along the ray.
+A ray is a vector-valued function $$\pmb{r}(t) = \pmb{o} + t\pmb{d}$$, where $$\pmb{o}$$ is the origin point of the ray, $$t$$ is the parameter and $$\pmb{d}$$ is the direction vector. The function's value at each value of the parameter is a point along the ray.
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/1.jpg)
 {: style="text-align: center;"}
@@ -50,7 +49,7 @@ A ray is a vector-valued function $$\bm{r}(t) = \bm{o} + t\bm{d}$$, where $$\bm{
 
 The first image that you'll render is a gradient from one color to another; a linear interpolation, or ***lerp***, of 2 colors, e.g. white at 0.0 and sky blue at 1.0, and the values in between blend the 2 of them. The value of the $$t$$ parameter is determined by the pixel's $$v$$ coordinate:
 
-$$\bm{blendedColor} = (1-\bm{t}) \sdot startColor + \bm{t} \sdot endColor$$
+$$\pmb{blendedColor} = (1-\pmb{t}) \cdot startColor + \pmb{t} \cdot endColor$$
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/3.png)
 {: style="text-align: center;"}
@@ -72,15 +71,17 @@ The point $$p'=(x-C_x, y-C_y, z-C_z)$$ is the translation of point $$p=(x, y, z)
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/4.jpg)
 {: style="text-align: center;"}
 
-In vector form, the equation of the sphere becomes $$(P-C)\sdot(P-C)=R^2$$. Recall that the dot product is the sum of the component-wise multiplication. In this case, it is the sum of the square of each component of vector $$P-C$$, which, as seen in the picture above, yields a point on the sphere centered at the origin when that point satisfies the equation.
+In vector form, the equation of the sphere becomes $$(P-C)\cdot(P-C)=R^2$$. Recall that the dot product is the sum of the component-wise multiplication. In this case, it is the sum of the square of each component of vector $$P-C$$, which, as seen in the picture above, yields a point on the sphere centered at the origin when that point satisfies the equation.
 
-Now, recall that a ray is a vector-valued function $$\bm{r}(t) = \bm{o} + t\bm{d}$$. We want to know if the ray intersects the sphere, i.e. we want to know if there is a $$t$$ such that $$\bm{r}(t)$$ satisfies the equation of the sphere: $$(\bm{r}(t)-C)\sdot(\bm{r}(t)-C)=R^2$$.
+Now, recall that a ray is a vector-valued function $$\pmb{r}(t) = \pmb{o} + t\pmb{d}$$. We want to know if the ray intersects the sphere, i.e. we want to know if there is a $$t$$ such that $$\pmb{r}(t)$$ satisfies the equation of the sphere: $$(\pmb{r}(t)-C)\cdot(\pmb{r}(t)-C)=R^2$$.
 
 When expanding and regrouping the equation, it is revealed that the equation is quadratic: 
 
-$$(A+tB-C)\sdot(A+tB-C)=R^2$$
-
-$$\{B \sdot Bt^2\} + \{2B \sdot (A-C)t\} + \{(A-C)\sdot(A-C)-R^2 \}=0  \implies ax^2+bx+c=0$$
+$$
+\begin{aligned}
+(A+tB-C)\cdot(A+tB-C) &= R^2 \\
+\{B \cdot Bt^2\} + \{2B \cdot (A-C)t\} + \{(A-C)\cdot(A-C)-R^2 \} &= 0  \implies ax^2+bx+c=0
+\end{aligned}$$
 
 where we can see the quadratic, linear, and constant terms.
 
@@ -91,15 +92,18 @@ A quadratic equation may have 0 roots (when no $$t$$ satisfies it), 1 root (when
 
 The roots are found by solving the ***quadratic formula***:
 
-$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
-
-$$t=\frac{-\{2B \sdot (A-C)\}\pm\sqrt{\{2B \sdot (A-C)^2\} - 4(B \sdot B)\{(A-C) \sdot (A-C) - R^2\}}}{2(B \sdot B)}$$
+$$
+\begin{aligned}
+x &= \frac{-b\pm\sqrt{b^2-4ac}}{2a} \\
+t &= \frac{-\{2B \cdot (A-C)\}\pm\sqrt{\{2B \cdot (A-C)^2\} - 4(B \cdot B)\{(A-C) \cdot (A-C) - R^2\}}}{2(B \cdot B)}
+\end{aligned}
+$$
 
 But we are not interested in the actual intersection point, only in whether there is one. The ***discriminant's*** sign tells you the number of roots: none if negative (the square root doesn't give a real number), 1 if 0 (the square root of 0 is only 0), 2 if positive (the square root of a positive number). ([There is so much more to the discriminant](https://mathworld.wolfram.com/PolynomialDiscriminant.html).)
 
 ### Surface normals
 
-If we want to shade the sphere, we'll need to compute the intersection points, by substituting $$t$$ in the ray vector function $$\bm{r}(t) = \bm{o} + t\bm{d}$$ with the values of the roots. The root that yields the closest intersection point to the camera is the one that the ray should use to sample the sphere (the other one will be occluded by the sphere itself).
+If we want to shade the sphere, we'll need to compute the intersection points, by substituting $$t$$ in the ray vector function $$\pmb{r}(t) = \pmb{o} + t\pmb{d}$$ with the values of the roots. The root that yields the closest intersection point to the camera is the one that the ray should use to sample the sphere (the other one will be occluded by the sphere itself).
 
 Here, the color sampled by each ray is given by the normal of the surface:
 
@@ -127,12 +131,12 @@ Here, the color sampled by each ray is given by the normal of the surface:
 
 For certain kinds of objects, it's important to be able to tell if, at a given hit point, the ray is coming from inside the surface or outside the surface. For most opaque surfaces, the only hit point that matters is the one where the ray is coming from outside the surface. In some translucent objects, though, like balls of glass, the other hit point also matters.
 
-One way to tell is to look at the relative directions of the normal and the ray: if they go in opposite directions about a line tangent to the surface, then the ray is ***incoming*** and comes from outside the surface; if they go in the same general direction about the tangent line, the ray is ***outgoing*** and comes from inside the surface. If the angle between the normal and the ray is between $$90\degree$$ and $$270\degree$$ ($$\pi/2$$ and $$3\pi/2$$), the ray is on the other side of the tangent line; if the angle is between $$270\degree$$ and $$90\degree$$, the ray is on the same side of the tangent line as the normal.
+One way to tell is to look at the relative directions of the normal and the ray: if they go in opposite directions about a line tangent to the surface, then the ray is ***incoming*** and comes from outside the surface; if they go in the same general direction about the tangent line, the ray is ***outgoing*** and comes from inside the surface. If the angle between the normal and the ray is between $$90°$$ and $$270°$$ ($$\pi/2$$ and $$3\pi/2$$), the ray is on the other side of the tangent line; if the angle is between $$270°$$ and $$90°$$, the ray is on the same side of the tangent line as the normal.
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/9.jpg)
 {: style="text-align: center;"}
 
-As always, we use $$r(t) \sdot N$$ to compute the cosine of the angle between the ray and the normal. If we divide the plane in 4 quadrants, aligning the horizontal axis with the ray vector (and forgetting about the tangent line for a second), we see that the cosine is negative in quadrants II and III, and positive in quadrants IV and I. The sign thus tells us the side the ray is coming from.
+As always, we use $$r(t) \cdot N$$ to compute the cosine of the angle between the ray and the normal. If we divide the plane in 4 quadrants, aligning the horizontal axis with the ray vector (and forgetting about the tangent line for a second), we see that the cosine is negative in quadrants II and III, and positive in quadrants IV and I. The sign thus tells us the side the ray is coming from.
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/10.jpg)
 {: style="text-align: center;"}
@@ -318,7 +322,7 @@ The concept of albedo enters the picture. The albedo of a surface is the proport
 
 A perfectly smooth reflective surface, like a mirror or smooth metal, reflects rays at the same angle of incidence.
 
-$$v \sdot N$$ is the length of the ***scalar projection*** of $$v$$ onto $$N$$, depicted here as $$B$$. $$B$$ can also be seen as the unit vector $$N$$ scaled by $$v \sdot N$$ and thus as the vector component of $$v$$ that goes in the direction of $$N$$. How is the vector of the reflected ray computed? Place $$v$$ at the hit point; it will point into the surface. Add $$B$$ to it; the result $$v+B$$ is a vector that is tangential to the surface and perpendicular to the normal $$N$$. Add $$B$$ again; the result is a vector that forms a right angle with $$v$$.
+$$v \cdot N$$ is the length of the ***scalar projection*** of $$v$$ onto $$N$$, depicted here as $$B$$. $$B$$ can also be seen as the unit vector $$N$$ scaled by $$v \cdot N$$ and thus as the vector component of $$v$$ that goes in the direction of $$N$$. How is the vector of the reflected ray computed? Place $$v$$ at the hit point; it will point into the surface. Add $$B$$ to it; the result $$v+B$$ is a vector that is tangential to the surface and perpendicular to the normal $$N$$. Add $$B$$ again; the result is a vector that forms a right angle with $$v$$.
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/35.jpg)
 {: style="text-align: center;"}
@@ -430,19 +434,21 @@ $$1=\sqrt{1\cos\theta^2+1\sin\theta^2}$$ *(Pythagorean theorem)*
 
 Since $$v$$ and $$N$$ are normalized:
 
-$$\cos\theta=v \sdot N$$
+$$\cos\theta=v \cdot N$$
 
 So:
 
-$$1=\sqrt{(v \sdot N)^2+1\sin\theta^2}$$
-
-$$1=(v \sdot N)^2+1\sin\theta^2$$
-
-$$\sin\theta = \sqrt{1-(v \sdot N)^2}$$
+$$
+\begin{aligned}
+1 &= \sqrt{(v \cdot N)^2+1\sin\theta^2} \\
+1 &= (v \cdot N)^2+1\sin\theta^2 \\
+\sin\theta &= \sqrt{1-(v \cdot N)^2}
+\end{aligned}
+$$
 
 Substituting:
 
-$$\sin\theta'=\frac{\eta}{\eta'}\sqrt{1-(v \sdot N)^2}$$
+$$\sin\theta'=\frac{\eta}{\eta'}\sqrt{1-(v \cdot N)^2}$$
 
 ***Only refracting***
 {: style="text-align: center; padding-bottom: 15px;"}
@@ -490,31 +496,31 @@ Focal length has an inverse relation to the angle of view and the magnification 
 	- As focal length gets shorter, the angle of view becomes wider and the scene is magnified
 	  less.
 
-*Vertical FOV of $$45\degree$$*
+*Vertical FOV of $$45°$$*
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/60.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-*Vertical FOV of $$90\degree$$*
+*Vertical FOV of $$90°$$*
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/61.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-*Vertical FOV of $$135\degree$$*
+*Vertical FOV of $$135°$$*
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/62.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-*Vertical FOV of $$170\degree$$*
+*Vertical FOV of $$170°$$*
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/63.png)
 {: style="text-align: center; padding-bottom: 15px;"}
 
-*Vertical FOV of $$180\degree$$*
+*Vertical FOV of $$180°$$*
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2020-02-07-ray-tracing-in-one-weekend/64.png)

@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Oren-Nayar Reflectance Model"
-katexmm: True
 ---
 
 ![](/assets/img/blog/2021-11-24-oren-nayar-reflectance-model/0.png)
@@ -19,19 +18,19 @@ A Lambertian surface is an ideal diffuser that reflects incident radiance equall
 
 The reason why Lambertian reflection is a poor approximation is that it doesn't take the roughness of the surface into account. In fact, its hemispherical-directional reflectance $$\rho_{dh}$$ is a constant spectral value (commonly called the diffuse color $$R$$) and so is its *BRDF*:
 
-$$R=\rho_{dh}(\omega_{i})$$
-
-$$=\int_{\omega_{o} \in H^{2}(n)}{f_r(p,\omega_{i},\omega_{o})\ \vert \cos{\theta_{o}}\vert\ d\omega_{o}}$$
-
-$$= f_r(p,\omega_{i},\omega_{o})\int_{\omega_{o} \in H^{2}(n)}{\vert \cos{\theta_{o}}\vert\ d\omega_{o}}$$
-
-$$= f_r(p,\omega_{i},\omega_{o})\int^{2\pi}_{\phi_{i}=0}{\int^{\pi/2}_{\theta_{i}=0}{\vert \cos{\theta_{i}}\vert\ \sin{\theta_{i}}\ d\theta_{i}}\ d\phi_{i}}$$
-
-$$= f_r(p,\omega_{i},\omega_{o})\ \pi$$
-
-$$\iff$$
-
-$$f_r(p,\omega_{i},\omega_{o})=\frac{R}{\pi}$$
+$$
+\begin{aligned}
+R &= \rho_{dh}(\omega_{i}) \\
+&= \int_{\omega_{o} \in H^{2}(n)}{f_r(p,\omega_{i},\omega_{o})\ \vert \cos{\theta_{o}}\vert\ d\omega_{o}} \\
+&= f_r(p,\omega_{i},\omega_{o})\int_{\omega_{o} \in H^{2}(n)}{\vert \cos{\theta_{o}}\vert\ d\omega_{o}} \\
+&= f_r(p,\omega_{i},\omega_{o})\int^{2\pi}_{\phi_{i}=0}{\int^{\pi/2}_{\theta_{i}=0}{\vert \cos{\theta_{i}}\vert\ \sin{\theta_{i}}\ d\theta_{i}}\ d\phi_{i}} \\
+&= f_r(p,\omega_{i},\omega_{o})\ \pi \\
+\\
+&\iff \\
+\\
+f_r(p,\omega_{i},\omega_{o}) &= \frac{R}{\pi}
+\end{aligned}
+$$
 
 Observe that nowhere in this expression does the viewing direction or the distance to the camera appear. Consider then a rough surface that the camera looks at from up close and from some distance:
 
@@ -88,58 +87,68 @@ $$L_{op}(\theta_{a},\phi_{a})=L^{1}_{op}(\theta_{a},\phi_{a})+L^{2}_{op}(\theta_
 
 which, to reiterate, gives the contribution of a single facet to the total radiance reflected by the surface. Unfortunately, the total outgoing radiance $$L_{o}(\theta_{o},\phi_{o},\theta_{i},\phi_{i},\sigma_{\theta})$$ and the *BRDF* are ***not easy to evaluate***, so they aren't used in practice. [PBRT](https://pbrt.org/) (and [CPBRT](https://github.com/carlos-lopez-garces/cpbrt) consequently) use the following ***approximation*** of the *BRDF* instead:
 
-$$f_{r}(\theta_{o},\phi_{o},\theta_{i},\phi_{i})=\frac{R}{\pi}(A+B\max(0,\cos(\phi_{i}-\phi_{o}))\sin{\alpha}\tan{\beta})$$
-
-$$=\frac{R}{\pi}(A+B\max(0,\cos{\phi_{i}}\cos{\phi_{o}}+\sin{\phi_{i}}\sin{\phi_{o}})\sin{\alpha}\tan{\beta})$$
+$$
+\begin{aligned}
+f_{r}(\theta_{o},\phi_{o},\theta_{i},\phi_{i}) &= \frac{R}{\pi}(A+B\max(0,\cos(\phi_{i}-\phi_{o}))\sin{\alpha}\tan{\beta}) \\
+&= \frac{R}{\pi}(A+B\max(0,\cos{\phi_{i}}\cos{\phi_{o}}+\sin{\phi_{i}}\sin{\phi_{o}})\sin{\alpha}\tan{\beta})
+\end{aligned}
+$$
 
 where
 
-$$A=1-\frac{\sigma^{2}}{2(\sigma^{2}+0.33)}$$
-
-$$B=\frac{0.45\sigma^{2}}{\sigma^{2}+0.09}$$
-
-$$\alpha=\max(\theta_{i},\theta_{o})$$
-
-$$\beta=\min(\theta_{i},\theta_{o})$$
+$$
+\begin{aligned}
+A &= 1-\frac{\sigma^{2}}{2(\sigma^{2}+0.33)} \\
+\\
+B &= \frac{0.45\sigma^{2}}{\sigma^{2}+0.09} \\
+\\
+\alpha &= \max(\theta_{i},\theta_{o}) \\
+\\
+\beta &= \min(\theta_{i},\theta_{o})
+\end{aligned}
+$$
 
 and $$R$$ is the albedo or Lambertian diffuse color of the facet. Oren and Nayar claim that this approximation is accurate enough for arbitrary roughness and angles of incidence and reflection, and that it obeys Helmholtz's reciprocity principle (i.e. for all pairs of directions $$(\theta_{i},\phi_{i})$$ and $$(\theta{o},\phi{o})$$, $$f_{r}(\theta_{o},\phi_{o},\theta_{i},\phi_{i})=f_{r}(\theta_{i},\phi_{i},\theta_{o},\phi_{o})$$). This expression trades accuracy for computability, so be warned; the ***loss of accuracy*** comes mainly from discarding the interreflection term.
 
 As mentioned at the beginning, the Oren-Nayar reflectance model is a ***generalization*** of Lambert's. This is the case in both the theoretical and precise model and the approximation. In particular, if we subtitute $$A=1$$ and $$B=0$$ in the approximation, we obtain the *BRDF* of the Lambert model:
 
-$$f_{r}(\theta_{o},\phi_{o},\theta_{i},\phi_{i})=\frac{R}{\pi}(1+0\max(0,\cos(\phi_{i}-\phi_{o}))\sin{\alpha}\tan{\beta})$$
-
-$$=\frac{R}{\pi}$$
+$$
+\begin{aligned}
+f_{r}(\theta_{o},\phi_{o},\theta_{i},\phi_{i}) &= \frac{R}{\pi}(1+0\max(0,\cos(\phi_{i}-\phi_{o}))\sin{\alpha}\tan{\beta}) \\
+&= \frac{R}{\pi}
+\end{aligned}
+$$
 
 ### Implementation and results
 
 Commit [d9fd4fd](https://github.com/carlos-lopez-garces/cpbrt/commit/d9fd4fd18958ac8260e04b174c4c330041dd255b) added the `OrenNayarReflection` class to [CPBRT](https://github.com/carlos-lopez-garces/cpbrt), which implements the Oren-Nayar reflectance model using the approximation to the theoretical *BRDF*.
 
-The following 2 renders feature the dragon triangle mesh by Christian Schüller with a matte material that uses (1) the Lambert *BRDF* and (2) the Oren-Nayar *BRDF* with $$\sigma_{\theta}=20\degree$$, illuminated by one point light located at the camera:
+The following 2 renders feature the dragon triangle mesh by Christian Schüller with a matte material that uses (1) the Lambert *BRDF* and (2) the Oren-Nayar *BRDF* with $$\sigma_{\theta}=20°$$, illuminated by one point light located at the camera:
 
 ![](/assets/img/blog/2021-11-24-oren-nayar-reflectance-model/6.png)
 {: style="text-align: center; width: 100%; margin: 0 auto; padding-bottom: 30px; padding-top: 15px;"}
 
 I'm not great at describing the differences, but I would say that both exhibit at least the main characteristics that the clay cylindrical vases in the paper have (see Figure 22): in the Lambert one, brightness declines gradually and towards the boundary of the mesh as the surface normals begin to point away from the light source; whereas in the Oren-Nayar one, brightness remains pretty much constant across the surface. In general, brightness increases with $$\sigma_{\theta}$$:
 
-$$\bold{\sigma_{\theta}=35\degree}$$
+$$\mathbf{\sigma_{\theta}=35°}$$
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2021-11-24-oren-nayar-reflectance-model/7.png)
 {: style="text-align: center; width: 85%; margin: 0 auto; padding-bottom: 15px;"}
 
-$$\bold{\sigma_{\theta}=45\degree}$$
+$$\mathbf{\sigma_{\theta}=45°}$$
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2021-11-24-oren-nayar-reflectance-model/8.png)
 {: style="text-align: center; width: 85%; margin: 0 auto; padding-bottom: 15px;"}
 
-$$\bold{\sigma_{\theta}=70\degree}$$
+$$\mathbf{\sigma_{\theta}=70°}$$
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2021-11-24-oren-nayar-reflectance-model/9.png)
 {: style="text-align: center; width: 85%; margin: 0 auto; padding-bottom: 15px;"}
 
-$$\bold{\sigma_{\theta}=85\degree}$$
+$$\mathbf{\sigma_{\theta}=85°}$$
 {: style="text-align: center; width: 70%; margin: 0 auto; padding-bottom: 15px;"}
 
 ![](/assets/img/blog/2021-11-24-oren-nayar-reflectance-model/10.png)

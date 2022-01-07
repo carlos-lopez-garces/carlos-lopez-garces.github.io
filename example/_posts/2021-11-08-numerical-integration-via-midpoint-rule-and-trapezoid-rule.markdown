@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Numerical integration via the midpoint rule and the trapezoid rule"
-katexmm: True
 ---
 This is a supplementary post to a series of posts I'm writing about the [CPBRT](https://github.com/carlos-lopez-garces/cpbrt) renderer, an implementation of Pharr, Jakob and Humphrey's [PBRT](https://pbrt.org/).
 
@@ -17,7 +16,7 @@ $$error_{absolute} = \vert c-x \vert$$
 
 and
 
-$$error_{relative} = \frac{\vert c-x \vert}{\vert x \vert}, if x\neq0$$
+$$error_{relative} = \frac{\vert c-x \vert}{\vert x \vert},\quad if\,x\neq0$$
 
 One can then imagine a procedure that aims at minimizing the approximation error measured with respect to a reference. 
 
@@ -27,9 +26,12 @@ For the 2 approximation methods that I'll describe next, the absolute error has 
 
 Suppose that $$f$$ is defined and integrable on $$[a, b]$$. The ***midpoint rule approximation*** to $$\int_{a}^{b}f(x) \, dx$$ using $$n$$ regularly spaced subintervals of $$[a, b]$$ is
 
-$$M(n)=f(m_{1})\Delta x + f(m_{2}) \Delta x +...+ f(m_{n}) \Delta x$$
-
-$$=\sum_{k=1}^{n}f(\frac{x_{k-1}+x_{k}}{2}) \Delta x$$
+$$
+\begin{aligned}
+M(n) &= f(m_{1})\Delta x + f(m_{2}) \Delta x +...+ f(m_{n}) \Delta x \\
+&= \sum_{k=1}^{n}f(\frac{x_{k-1}+x_{k}}{2}) \Delta x
+\end{aligned}
+$$
 
 where $$\Delta x = \frac{b-a}{n}$$, $$x_{0}=a$$, $$x_{k}=a+k\Delta x$$, and $$m_{k}=\frac{x_{k-1}+x_{k}}{2}$$ is the midpoint of $$[x_{k-1}, x_{k}]$$, for $$k=1,2,...,n$$.
 
@@ -42,9 +44,12 @@ In this definition one can recognize the ***midpoint Riemann sum*** that approxi
 
 Suppose that $$f$$ is defined and integrable on $$[a, b]$$. The ***trapezoid rule approximation*** to $$\int_{a}^{b}f(x) \, dx$$ using $$n$$ regularly spaced subintervals of $$[a, b]$$ is
 
-$$T(n)=\frac{f(x_{0})+f(x_{1})}{2}\Delta x + \frac{f(x_{1})+f(x_{2})}{2}\Delta x + ... + \frac{f(x_{n-1})+f(x_{n})}{2}\Delta x$$
-
-$$=\Big(\frac{1}{2}f(x_{0})+\sum_{k=1}^{n-1}f(x_{k})+\frac{1}{2}f(x_{n})\Big) \Delta x$$
+$$
+\begin{aligned}
+T(n) &= \frac{f(x_{0})+f(x_{1})}{2}\Delta x + \frac{f(x_{1})+f(x_{2})}{2}\Delta x + ... + \frac{f(x_{n-1})+f(x_{n})}{2}\Delta x \\
+&= \Big(\frac{1}{2}f(x_{0})+\sum_{k=1}^{n-1}f(x_{k})+\frac{1}{2}f(x_{n})\Big) \Delta x
+\end{aligned}
+$$
 
 where $$\Delta x = \frac{b-a}{n}$$ and $$x_{k}=a+k\Delta x$$, for $$k=0,1,...,n$$.
 
