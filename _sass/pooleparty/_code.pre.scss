@@ -30,11 +30,6 @@ code {
   @extend .color-transition;
   margin-left: -1rem;
   margin-right: -1rem;
-
-  // Commented out because this adds scrollbars to equation blocks.
-  // Prevent code linebreaks and allow side-scrolling for better readability on mobile
-  // overflow-x: auto;
-  // -webkit-overflow-scrolling: touch;
 }
 
 .pre-base {
