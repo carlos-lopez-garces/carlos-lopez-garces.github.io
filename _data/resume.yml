@@ -2,68 +2,89 @@
 # If you don't have a JSON Resume you can just edit this YAML file instead.
 # See also: <https://jsonresume.org/>.
 basics:
-  name: "Richard Hendricks"
+  name: "Carlos Lopez Garces"
   label: "Programmer"
-  picture: "https://via.placeholder.com/240x240"
-  email: ""
-  phone: "(912) 555-4321"
-  website: "https://piedpiper.com"
+  email: "carlos.lopez.garces@gmail.com"
   summary: >
-    Richard hails from Tulsa.
-    He has earned degrees from the University of Oklahoma and Stanford. (Go Sooners and Cardinals!)
-    Before starting Pied Piper, he worked for Hooli as a part time software developer.
-    While his work focuses on applied information theory,
-    mostly optimizing lossless compression schema of both the length-limited and adaptive variants,
-    his non-work interests range widely,
-    everything from quantum computing to chaos theory.
-    He could tell you about it, but THAT would NOT be a “length-limited” conversation!
-    Open `_data/resume.yml` to edit this text.
+    Senior Software Engineer with 11 years of professional experience. Undergraduate math student
+    at Indiana University. In the past, I worked on the kernel of the Oracle database server (at
+    Oracle Corp.) and on a cutting-edge container platform for the cloud (at Apcera,
+    Inc.). I became in love with computer graphics when I attended SIGGRAPH 2018
+    and went on to become a professional 3D graphics engineer at a successful
+    startup, HOVER, Inc. I aspire to do mathematically-oriented rendering work or
+    platform-level work for 3D engines.
   location:
-    address: "2712 Broadway St"
-    postalCode: "CA 94115"
-    city: "San Francisco"
+    city: "Seattle"
     countryCode: "US"
-    region: "California"
+    region: "WA"
   profiles:
     - network: "Twitter"
-      username: "RHendricksCEO"
-      url: ""
+      username: "clopezgarces"
+      url: "https://twitter.com/clopezgarces"
     - network: "LinkedIn"
-      username: "Richard Hendricks"
-      url: ""
+      username: "clopezgarces"
+      url: "https://www.linkedin.com/in/clopezgarces/"
 work:
-  - company: "Pied Piper"
-    position: "CEO/President"
-    website: "https://piedpiper.com"
-    startDate: "2013-12-01"
-    endDate: ""
+  - company: "Apcera | San Francisco, CA"
+    position: "Senior Software Engineer, Container scheduler and runtime"
+    website: "https://docs.apcera.com/"
+    startDate: "2016-05-09"
+    endDate: "2018-12-12"
     summary: >
-      Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has
-      consistently fielded high Weisman Scores™ that are not merely competitive,
-      but approach the theoretical limit of lossless compression.
+      Apcera is a container orchestrator for the deployment of containerized applications on AWS, Google Cloud, Microsoft Azure, and private data centers. Unlike Kubernetes, Apcera is an integrated solution that comes with its own container image format and runtime, its own overlay networks for isolated communication, and its own policy engine for access control and multitenancy. This was all in Go.
     highlights:
-      - "Built an algorithm for artist to detect if their music was violating copy right infringement laws"
-      - "Successfully won Techcrunch Disrupt"
-      - "Optimized an algorithm that holds the current world record for Weisman Scores"
-volunteer:
-  - organization: "CoderDojo"
-    position: "Teacher"
-    website: "https://coderdojo.com/"
-    startDate: "2012-01-01"
-    endDate: "2013-01-01"
-    summary: "Global movement of free coding clubs for young people."
+      - "Worked extensively on the original container runtime (Linux namespaces, cgroups, union filesystems), the health manager, and the package manager. Implemented in Go and Cgo."
+      - "Implemented rolling update and restart, a mode of image and configuration update that doesn't bring down the entire application, but that updates (recreates) one replica (container) at a time (guaranteeing 100% availability throughout the operation). In addition to fulfilling my usual duties, I acted as tech lead of a team of 9."
+      - "Implemented autoscaling of replicas, a health function that automatically scales up or down the number of replicas of an application in response to changes in load as measured by a number of performance metrics. Implemented as a Proportional-Integral-Derivative controller, or PID."
+      - "Participated in the re-implementation of the container runtime, so that it would comply with the Open Container Initiative industry standard."
+  - company: "Oracle Corporation"
+    position: "Senior Member of Technical Staff, OS"
+    website: "https://www.oracle.com/index.html"
+    startDate: "2011-01-11"
+    endDate: "2016-05-01"
+    summary: >
+      Apcera is a container orchestrator for the deployment of containerized applications on AWS, Google Cloud, Microsoft Azure, and private data centers. Unlike Kubernetes, Apcera is an integrated solution that comes with its own container image format and runtime, its own overlay networks for isolated communication, and its own policy engine for access control and multitenancy. This was all in Go.
     highlights:
-      - "Awarded 'Teacher of the Month'"
+      - "Worked across the Virtual OS, a part of the RDBMS's kernel: memory allocation, background process management, synchronization primitives (for processes to access shared memory safely), and threading. This layer of the kernel provides OS-like services to important layers built on top of it, most notably the cluster layer and the SQL/data layer."
+      - "Responsible for maintaining the Shared Server architecture. The Shared Server architecture is a non-dedicated mode of client-server connection that pairs each client with a server process from a pool for the duration of a single OCI call; connections are maintained by a dispatcher process and the requests are routed by it to the next available server process; the objective is to reduce server resource utilization. This was all in C for the main development branch, whose target was Linux on x64 architectures."
+      - "Responsible for maintaining the kernel's diagnostic framework."
+      - "Participated in the effort of porting Oracle 12c to HPUX IA64 (Intel's Itanium) and AIX PowerPC-64. In particular, the startup and shutdown services of the RDBMS server and the Oracle Java Virtual Machine. We started out with code from the main branch (Linux x64) that didn't even compile. An interesting feature that I ported was 'shared memory deferred allocation', where shared memory wasn't allocated all at once at startup, but only the main portion; allocation finished some time after the database server was already operational; processes would attach this memory as it became available."
 education:
-  - institution: "University of Oklahoma"
-    area: "Information Technology"
-    studyType: "Bachelor"
-    startDate: "2011-06-01"
-    endDate: "2014-01-01"
-    gpa: "4.0"
+  - institution: "Indiana University"
+    area: "Mathematics"
+    studyType: "Bachelor of Science"
+    startDate: "2020-08-01"
+    gpa: "3.905"
     courses:
-      - "DB1101 - Basic SQL"
-      - "CS2011 - Java Introduction"
+      - "MATH-M303 Linear Algebra"
+      - "MATH-M215 Calculus 1"
+      - "MATH-M215 Calculus 2"
+      - "MATH-M311 Calculus 3"
+      - "MATH-M312 Calculus 4"
+      - "MATH-M313 Differential Equations"
+      - "MATH-M466 Mathematical Statistics"
+      - "MATH-M393 Bridge to Abstract Algebra"
+      - "MATH-M403 Modern Algebra"
+  - institution: "<a href='https://tec.mx/en'>Tecnológico de Monterrey</a>"
+    area: "Computer Science"
+    studyType: "Bachelor of Science"
+    startDate: "2006-08-01"
+    endDate: "2010-12-15"
+    gpa: "96.09"
+    courses:
+      - "Computer Organization"
+      - "Computer Architecture"
+      - "Data Structures"
+      - "Computer Networks I, II, III"
+      - "Theory of Computation"
+      - "Analysis and Design of Algorithms"
+      - "Databases"
+      - "Operating Systems"
+      - "Distributed Systems"
+      - "Analysis and Modeling of Sofware Systems"
+      - "Intelligent Systems"
+      - "Computer Graphics"
+      - "..."
 awards:
   - title: "Digital Compression Pioneer Award"
     date: "2014-11-01"
@@ -76,13 +97,13 @@ publications:
     website: "https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)"
     summary: "Innovative middle-out compression algorithm that changes the way we store data."
 skills:
-  - name: "Web Development"
+  - name: "???"
     level: "Master"
     keywords:
       - "HTML"
       - "CSS"
       - "Javascript"
-  - name: "Compression"
+  - name: "???"
     level: "Master"
     keywords:
       - "Mpeg"
