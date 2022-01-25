@@ -55,8 +55,6 @@ menu:
     url:               /projects/
   - title:             Résumé
     url:               /resume/
-  - title:             Documentation
-    url:               /docs/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
@@ -328,7 +326,7 @@ include:
 
 plugins:
   - jekyll-default-layout
-  - jekyll-feed
+  # - jekyll-feed
   - jekyll-optional-front-matter
   - jekyll-paginate
   - jekyll-readme-index
