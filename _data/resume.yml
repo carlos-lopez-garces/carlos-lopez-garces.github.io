@@ -3,16 +3,16 @@
 # See also: <https://jsonresume.org/>.
 basics:
   name: "Carlos Lopez Garces"
-  label: "Programmer"
+#  label: "Programmer"
   email: "carlos.lopez.garces@gmail.com"
   summary: >
     Senior Software Engineer with 11 years of professional experience. Undergraduate math student
-    at Indiana University. In the past, I worked on the kernel of the Oracle database server (at
-    Oracle Corp.) and on a cutting-edge container platform for the cloud (at Apcera,
-    Inc.). I became in love with computer graphics when I attended SIGGRAPH 2018
-    and went on to become a professional 3D graphics engineer at a successful
-    startup, HOVER, Inc. I aspire to do mathematically-oriented rendering work or
-    platform-level work for 3D engines.
+    at Indiana University. In the past, I worked for [Oracle](https://www.oracle.com/index.html)
+    on the kernel of the Oracle database server and for [Apcera](https://en.wikipedia.org/wiki/Apcera)
+    (now a subsidiary of Ericsson) on a container runtime and orchestrator for the cloud. I became in 
+    love with computer graphics when I attended SIGGRAPH 2018 and went on to become a professional 3D 
+    graphics engineer at a startup, HOVER, Inc. I aspire to be a rendering engineer in the
+    film or videogame industries.
   location:
     city: "Seattle"
     countryCode: "US"
@@ -72,53 +72,48 @@ education:
     endDate: "2010-12-15"
     gpa: "96.09"
     courses:
-      - "Computer Organization"
-      - "Computer Architecture"
-      - "Data Structures"
-      - "Computer Networks I, II, III"
-      - "Theory of Computation"
-      - "Analysis and Design of Algorithms"
-      - "Databases"
-      - "Operating Systems"
-      - "Distributed Systems"
-      - "Analysis and Modeling of Sofware Systems"
-      - "Intelligent Systems"
-      - "Computer Graphics"
-      - "..."
-awards:
-  - title: "Digital Compression Pioneer Award"
-    date: "2014-11-01"
-    awarder: "Techcrunch"
-    summary: "There is no spoon."
-publications:
-  - name: "Video compression for 3d media"
-    publisher: "Hooli"
-    releaseDate: "2014-10-01"
-    website: "https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)"
-    summary: "Innovative middle-out compression algorithm that changes the way we store data."
+      - "Select CS courses: Computer Graphics, Computer Architecture, Operating Systems, Distributed Systems, Analysis and Design of Algorithms, Data Structures, Theory of Computation, Computer Networks I, II, III, Analysis and Modeling of Sofware Systems, Databases, Artificial Intelligence, Machine Learning, Modeling and Animation, Videogames."
+      - "Select math courses: Calculus I, II, II, Differential Equations, Probability and Statistics, Numerical Methods and Simulation."
+# awards:
+#   - title: "Digital Compression Pioneer Award"
+#     date: "2014-11-01"
+#     awarder: "Techcrunch"
+#     summary: "There is no spoon."
+# publications:
+#   - name: "???"
+#     publisher: "Hooli"
+#     releaseDate: "2014-10-01"
+#     website: "https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)"
+    # summary: "Innovative middle-out compression algorithm that changes the way we store data."
 skills:
   - name: "???"
-    level: "Master"
+    level: "???"
     keywords:
-      - "HTML"
-      - "CSS"
-      - "Javascript"
+      - "???"
+      - "???"
+      - "???"
   - name: "???"
-    level: "Master"
+    level: "???"
     keywords:
-      - "Mpeg"
-      - "MP4"
-      - "GIF"
+      - "???"
+      - "???"
+      - "???"
 languages:
-  - language: "English"
-    fluency: "Native speaker"
+  - language: "???"
+    fluency: "???"
 interests:
-  - name: "Wildlife"
+  - name: Computer graphics
     keywords:
-      - "Ferrets"
-      - "Unicorns"
+      - "Physically-based rendering"
+      - "Ray tracing"
+      - "Light transport"
+      - "Real-time rendering for games"
+  - name: Math
+    keywords:
+      - "Estimation"
+      - "Abstract vector spaces"
+      - "Numerical integration"
 references:
-  - name: "Erlich Bachman"
+  - name: "???"
     reference: >
-      It is my pleasure to recommend Richard, his performance working as a consultant for Main St.
-      Company proved that he will be a valuable addition to any company.
+      ???
