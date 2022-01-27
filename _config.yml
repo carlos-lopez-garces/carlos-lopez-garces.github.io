@@ -305,6 +305,10 @@ collections:
     permalink:         /projects/:path/
     output:            true
 
+  opengl-glsl-shaders:
+    permalink:         /projects/opengl-glsl-shaders/:path/
+    output:            true
+
 
 # File inclusion/exclusion
 # ----------------------------------------------------------------------------------------
