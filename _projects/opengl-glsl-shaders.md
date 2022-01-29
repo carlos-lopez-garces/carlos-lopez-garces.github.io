@@ -2,7 +2,7 @@
 layout: projects
 order: 4
 title: 'OpenGL/GLSL shaders'
-caption: A collection of GLSL shaders featuring various real-time rendering techniques.
+caption: A collection of GLSL shaders featuring various real-time rendering techniques. (Mesh by Keenan Crane.)
 description: >
   A collection of GLSL shaders featuring various real-time rendering techniques.
 image: 
