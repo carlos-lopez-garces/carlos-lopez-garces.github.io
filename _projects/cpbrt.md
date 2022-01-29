@@ -2,7 +2,7 @@
 layout: project
 order: 1
 title: 'CPBRT'
-caption: My implementation of the PBRT physically-based renderer.
+caption: My implementation of the PBRT physically-based renderer. (Mesh by Christian Schüller.)
 description: >
   My implementation of the PBRT physically-based renderer.
 date: '01-01-2020'
