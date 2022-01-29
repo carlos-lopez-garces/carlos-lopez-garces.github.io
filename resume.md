@@ -10,7 +10,7 @@ left_column:
   - education
 #  - volunteer
   - awards
-#  - publications
+  - publications
 #  - references
 right_column:
   - skills

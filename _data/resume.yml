@@ -25,6 +25,14 @@ basics:
       username: "clopezgarces"
       url: "https://www.linkedin.com/in/clopezgarces/"
 work:
+  - company: "HOVER | San Francisco, CA"
+    position: "Senior Graphics Engineer"
+    website: "https://hover.to/"
+    startDate: "2019-01-03"
+    summary: >
+      .
+    highlights:
+      - ""
   - company: "Apcera | San Francisco, CA"
     position: "Senior Software Engineer, Container scheduler and runtime"
     website: "https://docs.apcera.com/"
@@ -43,7 +51,7 @@ work:
     startDate: "2011-01-11"
     endDate: "2016-05-01"
     summary: >
-      Apcera is a container orchestrator for the deployment of containerized applications on AWS, Google Cloud, Microsoft Azure, and private data centers. Unlike Kubernetes, Apcera is an integrated solution that comes with its own container image format and runtime, its own overlay networks for isolated communication, and its own policy engine for access control and multitenancy. This was all in Go.
+      The Virtual Operating System (VOS) group builds modules that provide process/thread management and scheduling, memory management, synchronization, CPU and I/O resource management, intercluster and interprocess communication, high-performance file I/O, and more. VOS also defines interfaces to the platform-specific layer of the RDBMS that exploit OS-specific functionality, such as NUMA-aware memory allocation, dynamic reconfiguration, user-mode threads, and virtualization.
     highlights:
       - "Worked across the Virtual OS, a part of the RDBMS's kernel: memory allocation, background process management, synchronization primitives (for processes to access shared memory safely), and threading. This layer of the kernel provides OS-like services to important layers built on top of it, most notably the cluster layer and the SQL/data layer."
       - "Responsible for maintaining the Shared Server architecture. The Shared Server architecture is a non-dedicated mode of client-server connection that pairs each client with a server process from a pool for the duration of a single OCI call; connections are maintained by a dispatcher process and the requests are routed by it to the next available server process; the objective is to reduce server resource utilization. This was all in C for the main development branch, whose target was Linux on x64 architectures."
@@ -79,15 +87,34 @@ education:
 #     date: "2014-11-01"
 #     awarder: "Techcrunch"
 #     summary: "There is no spoon."
-# publications:
-#   - name: "???"
-#     publisher: "Hooli"
-#     releaseDate: "2014-10-01"
-#     website: "https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)"
-    # summary: "Innovative middle-out compression algorithm that changes the way we store data."
+publications:
+  - name: "LINALGxIV: Linear Algebra IV: Orthogonality & Symmetric Matrices and the SVD"
+    publisher: "edX"
+    releaseDate: "2021-12-24"
+    website: "https://courses.edx.org/certificates/d9f10ed8de5142ccb664061572e53f3c"
+  - name: "LFD401: Developing Applications For Linux"
+    publisher: "The Linux Foundation"
+    releaseDate: "2014-05-01"
+    website: "https://training.linuxfoundation.org/training/developing-applications-for-linux"
+  - name: "Ultimate Go"
+    publisher: "Ardan Labs"
+    releaseDate: "2017-02-01"
+    website: "https://courses.ardanlabs.com/bundles/Ardanlabsonline"
+  - name: "Structuring Machine Learning Projects"
+    publisher: "Coursera"
+    releaseDate: "2018-03-01"
+    website: "https://www.coursera.org/account/accomplishments/verify/67UZMXGWF79D"
+  - name: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization"
+    publisher: "Coursera"
+    releaseDate: "2018-02-01"
+    website: "https://www.coursera.org/account/accomplishments/verify/UZQRMGMYWRBQ"
+  - name: "Neural Networks and Deep Learning"
+    publisher: "Coursera"
+    releaseDate: "2017-11-01"
+    website: "https://www.coursera.org/account/accomplishments/verify/ZYCFVH23DHDA"
 skills:
-  - name: "???"
-    level: "???"
+  - name: "C"
+    level: "professional"
     keywords:
       - "???"
       - "???"
@@ -98,9 +125,9 @@ skills:
       - "???"
       - "???"
       - "???"
-languages:
-  - language: "???"
-    fluency: "???"
+# languages:
+#   - language: "???"
+    # fluency: "???"
 interests:
   - name: Computer graphics
     keywords:
@@ -113,7 +140,7 @@ interests:
       - "Estimation"
       - "Abstract vector spaces"
       - "Numerical integration"
-references:
-  - name: "???"
-    reference: >
-      ???
+# references:
+  # - name: "???"
+    # reference: >
+      # ???
