@@ -309,6 +309,9 @@ collections:
     permalink:         /projects/opengl-glsl-shaders/:path/
     output:            true
 
+  directx12-hlsl-shaders:
+    permalink:         /projects/directx12-hlsl-shaders/:path/
+    output:            true
 
 # File inclusion/exclusion
 # ----------------------------------------------------------------------------------------
