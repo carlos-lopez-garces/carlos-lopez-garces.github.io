@@ -29,10 +29,14 @@ work:
     position: "Senior Graphics Engineer"
     website: "https://hover.to/"
     startDate: "2019-01-03"
+    endDate: "2021-12-15"
     summary: >
-      .
+      HOVER reconstructs 3D models of homes out of smartphone photographs using Computer Vision and real-time rendering on the web. The HOVER 3D model dataset contains several thousand textured triangle meshes.
     highlights:
-      - ""
+      - "Implemented algorithms for the detection of different house structures (types of roofs, etc.) and their components on triangle meshes of house 3D models from HOVER's dataset."
+      - "Implemented a terrain mesh generator that adjusted to the footprint of the house 3D model."
+      - "Implemented procedural generation of 3D meshes for components of the house (windows, shutters, etc)."
+      - "Participated in the implementation of a real-time path tracer based on Three.js and WebGL."
   - company: "Apcera | San Francisco, CA"
     position: "Senior Software Engineer, Container scheduler and runtime"
     website: "https://docs.apcera.com/"
