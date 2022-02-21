@@ -18,6 +18,9 @@ links:
 sitemap: false
 ---
 
+* TOC
+{:toc}
+
 The ray tracer of book I of the 'Ray Tracing in One Weekend' series by Peter Shirley was the first renderer that I studied and wrote, back in 2019. It took a few more days than a single weekend; pretty mentally intense, that's for sure.
 
 What follows is an exposition of my understanding of the key mechanisms of a ray tracer (the sampling algorithm, the ray-sphere intersection equations, antialiasing via jittered multisampling), the phenomena of light reflection and refraction (Lambertian diffuse and perfectly specular reflection, and dielectric refraction), and the effects that book I implements (depth of field).
