@@ -13,8 +13,8 @@ image:
     960w:  /assets/img/projects/ray-tracing-in-one-weekend.jpg
     480w:  /assets/img/projects/ray-tracing-in-one-weekend.jpg
 links:
-  - title: Link
-    url: https://hydejack.com/
+  - title: Github repo
+    url: https://github.com/carlos-lopez-garces/ray
 sitemap: false
 ---
 
