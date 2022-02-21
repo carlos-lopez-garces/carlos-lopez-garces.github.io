@@ -13,7 +13,7 @@ image:
     960w:  /assets/img/projects/real-time-path-tracing-shadertoy.png
     480w:  /assets/img/projects/real-time-path-tracing-shadertoy.png
 links:
-  - title: Link
-    url: https://hydejack.com/
+  - title: Shadertoy
+    url: https://www.shadertoy.com/view/WscyWr
 sitemap: false
 ---
