@@ -4,6 +4,7 @@ title: About me
 selected_projects:
   - _projects/cpbrt.md
   - _projects/cdx.md
+  - _directx12-hlsl-shaders/hlsl-shadow-mapping.md
 projects_page: projects.md
 posts_page: /blog/
 ---

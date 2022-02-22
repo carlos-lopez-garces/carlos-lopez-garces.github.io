@@ -3,6 +3,7 @@ layout: project
 order: 1
 date: '15-02-2022'
 title: 'Shadow mapping'
+caption: The standard shadow mapping algorithm implemented with DirectX 12 / HLSL.
 image: 
   path: /assets/img/projects/directx12-hlsl-shaders/hlsl-shadow-mapping.png
   srcset: 
