@@ -41,4 +41,72 @@ sitemap: false
 
 ## Select images
 
+***Dragon triangle mesh by Christian Schüller, gold material, Torrance-Sparrow microfacets with Trowbridge-Reitz distribution.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/1.png)
+{: style="text-align: center;"}
 
+***Ganesha mesh by Wenzel Jakob; notice the absence of shadows (wrong).***
+{: style="text-align: center;"}
+ ![](/assets/img/projects/cpbrt/2.png)
+{: style="text-align: center;"}
+
+***Participating media. Not working yet.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/3.png)
+{: style="text-align: center;"}
+
+***Cornell box, stratified sampling, 4 and 20 samples per pixel, path integrator.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/4.png)
+{: style="text-align: center;"}
+
+***Dragon triangle mesh by Christian Schüller, plastic material with Torrance-Sparrow microfacet BRDF to simulate glossy hard plastic.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/5.jpg)
+{: style="text-align: center;"}
+
+***Dragon triangle mesh by Christian Schüller, spherical diffuse area light, matte material with Lambertian reflection.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/6.png)
+{: style="text-align: center;"}
+
+***Dragon triangle mesh by Christian Schüller, spherical diffuse area light, plastic material w/o specular reflection.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/7.png)
+{: style="text-align: center;"}
+
+***Dragon triangle mesh by Christian Schüller, matte material with Oren-Nayar diffuse reflection.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/8.png)
+{: style="text-align: center;"}
+
+***Dragon triangle mesh by Christian Schüller, matte material with perfect Lambertian diffuse reflection.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/9.png)
+{: style="text-align: center;"}
+
+***Cover of the PBRT book by Yining Karl Li, perspective camera, 2 point lights, mirror material, specular BRDF.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/10.jpg)
+{: style="text-align: center;"}
+
+***Dragon triangle mesh by Christian Schüller, perspective camera, 2 point lights, matte material.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/11.png)
+{: style="text-align: center;"}
+
+***Cover of the PBRT book by Yining Karl Li, perspective camera, 2 point lights, matte material.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/12.png)
+{: style="text-align: center;"}
+
+***One triangle of a triangle mesh, matte material.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/13.png)
+{: style="text-align: center;"}
+
+***First render, implicitly defined sphere.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/14.png)
+{: style="text-align: center;"}
