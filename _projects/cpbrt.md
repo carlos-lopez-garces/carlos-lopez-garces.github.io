@@ -56,7 +56,12 @@ sitemap: false
 ![](/assets/img/projects/cpbrt/3.png)
 {: style="text-align: center;"}
 
-***Cornell box, stratified sampling, 4 and 20 samples per pixel, path integrator.***
+***Cornell box, direct lighting integrator, stratified sampling, 30 samples per pixel.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/15.png)
+{: style="text-align: center;"}
+
+***Cornell box, path integrator, stratified sampling, 10 samples per pixel.***
 {: style="text-align: center;"}
 ![](/assets/img/projects/cpbrt/4.png)
 {: style="text-align: center;"}
