@@ -35,8 +35,8 @@ sitemap: false
 ## Roadmap
 
 | **January 2022:** Nothing. | **February 2022:** Volumetric light transport. |
-| **March 2022:** Gold metal material. Checkerboard texture. Glass material. Utah Teapot (full) by [Benedikt Bitterli.](https://benedikt-bitterli.me/) | **April 2022:** Infinite area lights. |
-| **May 2022:** ? | **June 2022:** ? | |
+| **March 2022:** Gold metal material. Checkerboard texture. | **April 2022:** Infinite area lights. Glass material. |
+| **May 2022:** Infinite area lights. Radiance/environment maps. Glass material. Utah Teapot (full) by [Benedikt Bitterli.](https://benedikt-bitterli.me/) | **June 2022:** Bump mapping. | |
 {:.noscroll-table}
 
 ## Select images
