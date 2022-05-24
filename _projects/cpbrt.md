@@ -41,7 +41,7 @@ sitemap: false
 
 ## Select images
 
-***Utah teapot triangle mesh by Benedikt Bitterli, metal material, lit with an infinite area light backed by a latitude-longitude radiance map.***
+***Utah teapot triangle mesh by Benedikt Bitterli, glass material, lit with an infinite area light backed by a latitude-longitude radiance map.***
 {: style="text-align: center;"}
 ![](/assets/img/projects/cpbrt/18.png)
 {: style="text-align: center;"}
