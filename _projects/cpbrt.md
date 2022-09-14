@@ -41,6 +41,13 @@ sitemap: false
 
 ## Select images
 
+***Dragon triangle mesh by Christian Schüller, subsurface scattering, skin material.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/19.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/20.png)
+{: style="text-align: center;"}
+
 ***Utah teapot triangle mesh by Benedikt Bitterli, glass material, lit with an infinite area light backed by a latitude-longitude radiance map.***
 {: style="text-align: center;"}
 ![](/assets/img/projects/cpbrt/18.png)
