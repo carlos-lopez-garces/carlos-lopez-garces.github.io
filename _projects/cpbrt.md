@@ -32,12 +32,11 @@ sitemap: false
 | **Lights:** Point and diffuse area light sources. An area light can take the form of any of the supported *shapes*. Infinite area light source backed by environment map. | **Cameras:** Thin lens perspective and orthographic projective cameras with configurable aperture and focal distance (for depth of field) and film aspect ratio. The perspective camera also has a configurable field of view. |
 | **Participating media:** Homogeneous-density and grid-based variable-density media. | |
 
-## Roadmap
+## Project blog posts
 
-| **January 2022:** Nothing. | **February 2022:** Volumetric light transport. |
-| **March 2022:** Gold metal material. Checkerboard texture. | **April 2022:** Infinite area lights. Glass material. |
-| **May 2022:** Infinite area lights. Radiance/environment maps. Glass material. Utah Teapot (full) by [Benedikt Bitterli.](https://benedikt-bitterli.me/) | **June 2022:** Bump mapping. | |
-{:.noscroll-table}
+[Sampling and reconstruction](/blog/cpbrt/2022-01-10-sampling-and-reconstruction-in-cpbrt/) (Jan 10, 2022)
+
+[Oren-Nayar reflectance model](/blog/cpbrt/2021-11-24-oren-nayar-reflectance-model/) (Nov 24, 2021)
 
 ## Select images
 
@@ -137,3 +136,10 @@ sitemap: false
 {: style="text-align: center;"}
 ![](/assets/img/projects/cpbrt/14.png)
 {: style="text-align: center;"}
+
+## Roadmap
+
+| **January 2022:** Nothing. | **February 2022:** Volumetric light transport. |
+| **March 2022:** Gold metal material. Checkerboard texture. | **April 2022:** Infinite area lights. Glass material. |
+| **May 2022:** Infinite area lights. Radiance/environment maps. Glass material. Utah Teapot (full) by [Benedikt Bitterli.](https://benedikt-bitterli.me/) | **June 2022:** Bump mapping. | |
+{:.noscroll-table}
