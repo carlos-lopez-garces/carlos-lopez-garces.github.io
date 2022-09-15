@@ -34,9 +34,11 @@ sitemap: false
 
 ## Project blog posts
 
-[Sampling and reconstruction](/blog/cpbrt/2022-01-10-sampling-and-reconstruction-in-cpbrt/) (Jan 10, 2022)
+**[Sampling and reconstruction](/blog/cpbrt/2022-01-10-sampling-and-reconstruction-in-cpbrt/)** (Jan 10, 2022, work in progress): Some of the theory behind the sampling of continuous functions and their reconstruction out of samples. 
 
-[Oren-Nayar reflectance model](/blog/cpbrt/2021-11-24-oren-nayar-reflectance-model/) (Nov 24, 2021)
+**[Oren-Nayar reflectance model](/blog/cpbrt/2021-11-24-oren-nayar-reflectance-model/)** (Nov 24, 2021): A generalization of Lambert's reflectance model for diffuse reflection that takes into account the effects of the microgeometry of the surface on light reflection, as well as the position of the camera relative to it.
+
+**[Subsurface scattering and the BSSRDF](/blog/cpbrt/2022-08-09-subsurface-scattering-and-the-bssrdf)** (Aug 09, 2022, work in progress): A description of the Bidirectional Scattering Distribution Function (BSSRDF) and its role in simulating subsurface light transport.
 
 ## Select images
 
