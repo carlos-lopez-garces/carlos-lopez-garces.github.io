@@ -42,6 +42,15 @@ sitemap: false
 
 ## Select images
 
+***10mm fish-eye lens.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/21.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/22.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/23.png)
+{: style="text-align: center;"}
+
 ***Dragon triangle mesh by Christian Schüller, subsurface scattering, skin material.***
 {: style="text-align: center;"}
 ![](/assets/img/projects/cpbrt/19.png)
