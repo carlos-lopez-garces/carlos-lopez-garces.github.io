@@ -6,7 +6,7 @@ basics:
 #  label: "Programmer"
   email: "carlos.lopez.garces@gmail.com"
   summary: >
-    Senior Software Engineer with 11 years of professional experience. Undergraduate math student
+    Senior Software Engineer with 12 years of professional experience. Undergraduate math student
     at [Indiana University](https://www.iu.edu/index.html). In the past, I worked for [Oracle](https://www.oracle.com/index.html)
     on the kernel of the Oracle database server and for [Apcera](https://en.wikipedia.org/wiki/Apcera)
     (now a subsidiary of Ericsson) on a container runtime and orchestrator for the cloud. I became in 
@@ -29,7 +29,7 @@ work:
     position: "Senior Graphics Engineer"
     website: "https://hover.to/"
     startDate: "2019-01-03"
-    endDate: "2021-12-15"
+    # endDate: "2021-12-15"
     summary: >
       HOVER reconstructs 3D models of homes out of smartphone photographs using Computer Vision and real-time rendering on the web. The HOVER 3D model dataset contains several thousand textured triangle meshes.
     highlights:
@@ -74,9 +74,12 @@ education:
       - "MATH-M311 Calculus 3"
       - "MATH-M312 Calculus 4"
       - "MATH-M313 Differential Equations"
+      - "MATH-M463 Probability Theory" 
       - "MATH-M466 Mathematical Statistics"
       - "MATH-M393 Bridge to Abstract Algebra"
       - "MATH-M403 Modern Algebra"
+      - "MATH-M413 Real Analysis"
+      - "MATH-T321 Topology"
   - institution: "<a href='https://tec.mx/en'>Tecnológico de Monterrey</a>"
     area: "Computer Science"
     studyType: "Bachelor of Science"
@@ -117,12 +120,11 @@ publications:
     releaseDate: "2017-11-01"
     website: "https://www.coursera.org/account/accomplishments/verify/ZYCFVH23DHDA"
 skills:
-  - name: "C"
-    level: "professional"
+  - name: "Programming languages"
     keywords:
-      - "???"
-      - "???"
-      - "???"
+      - "C (5 years, professionally)"
+      - "Go (3 years, professionally)"
+      - "C++ (4 years, side projects)"
   - name: "???"
     level: "???"
     keywords:
