@@ -20,6 +20,8 @@ sitemap: false
 
 **CDXR** is my real-time toy renderer. Based on the [Falcor](https://github.com/NVIDIAGameWorks/Falcor) framework and the DirectX Raytracing API, CDXR implements a hybrid rasterization-raytracing configurable pipeline. For writing this renderer, I relied a lot on Chris Wyman's SIGGRAPH courses and the Ray Tracing Gems series.
 
+Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/cdxr)***.
+
 ## Features
 
 - One-bounce diffuse global illumination.

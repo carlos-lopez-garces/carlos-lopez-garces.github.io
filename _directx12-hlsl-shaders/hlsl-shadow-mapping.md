@@ -10,6 +10,9 @@ image:
     1920w: /assets/img/projects/directx12-hlsl-shaders/hlsl-shadow-mapping.png
     960w:  /assets/img/projects/directx12-hlsl-shaders/hlsl-shadow-mapping.png
     480w:  /assets/img/projects/directx12-hlsl-shaders/hlsl-shadow-mapping.png
+links:
+  - title: Github repo
+    url: https://github.com/carlos-lopez-garces/d3d12
 sitemap: false
 ---
 

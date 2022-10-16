@@ -23,6 +23,8 @@ sitemap: false
 
 **CPBRT** is my physically-based, offline toy renderer. It is the result of studying ***[Physically Based Rendering: From Theory to Implementation](https://pbr-book.org/)*** (Pharr, Jakob, and Humphreys, 2016), writing down the code fragments provided by the authors, and filling in the gaps. For the longest time, I wanted to have a playground to learn interesting rendering techniques and try out new ideas. Taking inspiration from great rendering engineers like Yining Karl Li and his [Takua Renderer](https://www.yiningkarlli.com/projects/takuarender.html), Edward Liu and his [EDXRay](http://behindthepixels.io/EDXRay/), and Peter Kutz and his [Photorealizer](https://peterkutz.com/), I started CPBRT in November 2020 and it took me nearly 9 months to produce a 1st render with it; it was a tough, but infinitely rewarding experience.
 
+Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/cpbrt)***.
+
 ## Features
 
 | **Light transport algorithms:** Kajiya path tracing (unidirectional, unbiased Monte Carlo estimation of the light transport equation). Direct-lighting (no indirect illumination) and path (full global illumination) integrators. | **Reflectance models and BRDFs:** Lambert diffuse model, Oren-Nayar diffuse model for rough surfaces, Fresnel perfectly specular model, and Fresnel glossy specular model (with Torrance-Sparrow microfacets with Beckmann-Spizzichino or Trowbridge-Reitz distributions). |
