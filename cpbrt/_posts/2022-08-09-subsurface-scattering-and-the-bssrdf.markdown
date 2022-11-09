@@ -3,6 +3,8 @@ layout: post
 title:  "Subsurface scattering and the BSSRDF (WIP)"
 ---
 
+This is a ***work in progress***. I haven't structured it properly along a logically-sequenced thread of ideas. 
+
 The BRDF, BTDF, and BSSRDF are distribution functions that describe how incident light is scattered by a surface. This post will describe the BSSRDF and its role in simulating subsurface light transport.
 
 
