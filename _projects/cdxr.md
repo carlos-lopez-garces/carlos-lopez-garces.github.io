@@ -31,8 +31,24 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 - Thin lens camera and depth of field. 
 - **Tone mapping.** 
 - Lambertian diffuse reflection and microfacet reflection models.
+- **Unidirectional path tracing.**
 
 ## Select images
+
+***01/09/2023 Unidirectional path tracing, combined Lambertian and specular BRDFs, and visibility testing. Assets by NVIDIA.***
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/9.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/10.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/11.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/12.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/13.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/14.png)
+{: style="text-align: center;"}
 
 ***09/28/2022 Direct lighting on a microfacet reflection model. Assets by NVIDIA.***
 {: style="text-align: center;"}
