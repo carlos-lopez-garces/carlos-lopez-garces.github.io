@@ -32,8 +32,22 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 - **Tone mapping.** 
 - Lambertian diffuse reflection and microfacet reflection models.
 - **Unidirectional path tracing.**
+- Ashikhmin-Shirley BRDF.
 
 ## Select images
+
+***01/13/2023 Unidirectional path tracing, Ashikhmin-Shirley BRDF. Assets by NVIDIA.***
+{: style="text-align: center;"}
+The Ashikhmin-Shirley BRDF models surfaces that have a diffuse substrate and a glossy coat. To sample it, its diffuse and specular terms are chosen with 0.5 probability each. When the diffuse term is chosen, the incident direction $$ \omega_i $$ is sampled using a cosine-weighted distribution; when the specular term is chosen instead, $$ \omega_i $$ is sampled using a microfacet distribution (I chose Trowbridge-Reitz because that's what PBRT uses for its substrate material).
+{: style="text-align: justify;"}
+![](/assets/img/projects/cdxr/15.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/16.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/17.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cdxr/18.png)
+{: style="text-align: center;"}
 
 ***01/09/2023 Unidirectional path tracing, combined Lambertian and specular BRDFs, and visibility testing. Assets by NVIDIA.***
 {: style="text-align: center;"}
