@@ -28,7 +28,7 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 ## Features
 
 | **Light transport algorithms:** Kajiya path tracing (unidirectional, unbiased Monte Carlo estimation of the light transport equation). Direct-lighting (no indirect illumination) and path (full global illumination) integrators. | **Reflectance models and BRDFs:** Lambert diffuse model, Oren-Nayar diffuse model for rough surfaces, Fresnel perfectly specular model, and Fresnel glossy specular model (with Torrance-Sparrow microfacets with Beckmann-Spizzichino or Trowbridge-Reitz distributions). |
-| **Textures:** Floating-point and spectrum constant-value textures. Procedural checkerboard texture, antialiased with a box filter. Mipmapping. | **Materials:** Matte with either a perfect diffuse Lambertian BRDF or an Oren-Nayar BRDF for various degrees of roughness; plastic with diffuse and glossy specular BRDFs; mirror with a perfectly-specular BRDF; gold; and glass with perfectly-specular BRDF and BTDF. |
+| **Textures:** Floating-point and spectrum constant-value textures. Procedural checkerboard texture, antialiased with a box filter. Mipmapping. | **Materials:** Matte with either a perfect diffuse Lambertian BRDF or an Oren-Nayar BRDF for various degrees of roughness; plastic with diffuse and glossy specular BRDFs; mirror with a perfectly-specular BRDF; gold; glass with perfectly-specular BRDF and BTDF; diffuse substrate and glossy coat with an Ashikhmin-Shirley BRDF. |
 | **Shapes:** Triangle meshes, single triangles, and spherical implicit surfaces. | **Accelerators:** BVH with 5 different primitive (or object) subdivision methods: linear BVH, hierarchical linear BVH, midpoint partitioning, equal counts partitioning, and surface area heuristic (SAH).|
 | **Samplers:** Uniform or jittered stratified pixel sampling for 1D samples and Latin Hypercube sampling for 2D samples. Samplers rely on a Permuted Congruential Generator (PCG) pseudo-random number generator. | **Filters:** Box, triangle, Gaussian, Mitchell-Netravali, and Lanczos windowed-sinc filters. |
 | **Lights:** Point and diffuse area light sources. An area light can take the form of any of the supported *shapes*. Infinite area light source backed by environment map. | **Cameras:** Thin lens perspective and orthographic projective cameras with configurable aperture and focal distance (for depth of field) and film aspect ratio. The perspective camera also has a configurable field of view. |
@@ -43,6 +43,21 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 **[Subsurface scattering and the BSSRDF](/blog/cpbrt/2022-08-09-subsurface-scattering-and-the-bssrdf)** (Aug 09, 2022, work in progress): A description of the Bidirectional Scattering Distribution Function (BSSRDF) and its role in simulating subsurface light transport.
 
 ## Select images
+
+***01/23/2023 Diffuse substrate and glossy coat with an Ashikhmin-Shirley BRDF.***
+{: style="text-align: center;"}
+The Ashikhmin-Shirley BRDF models surfaces that have a diffuse substrate and a glossy coat. To sample it, its diffuse and specular terms are chosen with 0.5 probability each. When the diffuse term is chosen, the incident direction $$ \omega_i $$ is sampled using a cosine-weighted distribution; when the specular term is chosen instead, $$ \omega_i $$ is sampled using a microfacet distribution (Trowbridge-Reitz in this case).
+
+I'm still looking for a choice of reflectances and roughness values that really illustrates the properties of this BRDF.
+
+The second render was produced using the volumetric path integrator; the prominent salt-and-pepper noise is something I haven't been able to fix.
+{: style="text-align: justify;"}
+![](/assets/img/projects/cpbrt/24.png)
+{: style="text-align: center;"
+![](/assets/img/projects/cpbrt/25.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/25.png)
+{: style="text-align: center;"}
 
 ***10mm fish-eye lens.***
 {: style="text-align: center;"}
