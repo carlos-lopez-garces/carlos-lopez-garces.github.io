@@ -53,8 +53,6 @@ I'm still looking for a choice of reflectances and roughness values that really 
 The second render was produced using the volumetric path integrator; the prominent salt-and-pepper noise is something I haven't been able to fix.
 {: style="text-align: justify;"}
 ![](/assets/img/projects/cpbrt/24.png)
-{: style="text-align: center;"
-![](/assets/img/projects/cpbrt/25.png)
 {: style="text-align: center;"}
 ![](/assets/img/projects/cpbrt/25.png)
 {: style="text-align: center;"}
