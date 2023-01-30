@@ -19,7 +19,7 @@ sitemap: false
 * TOC
 {:toc}
 
-One of the applications of the stencil test is to obtain planar reflections. In this blog post, I describe my understanding of the key elements of this technique. For an expert treatment, I refer the reader to Frank Luna's *Introduction to 3D Game Programming with DirectX 12* and other sources that I list at the end.
+One of the applications of the stencil test is to obtain planar reflections. In this blog post, I describe my understanding of the key elements of this technique. For an expert treatment, I refer the reader to Frank Luna's *Introduction to 3D Game Programming with DirectX 12* and other sources that I mention throughout.
 
 We start by drawing the geometry of opaque objects; this excludes mirrors and, of course, transparent objects. 
 
@@ -85,7 +85,7 @@ Observe then that the process can be broken up into 2 stages: (1) set up the ste
 
 ## Setting up the stencil buffer
 
-To set up the stencil stencil buffer, we draw the mirror using an additional PSO with very particular depth, blend, and stencil settings.
+To set up the stencil buffer, we draw the mirror using an additional PSO with very particular depth, blend, and stencil settings.
 
 {% highlight c++ %}
 // Depth/stencil buffer descriptor.
