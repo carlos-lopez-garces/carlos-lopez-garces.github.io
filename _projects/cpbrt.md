@@ -27,8 +27,8 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 
 ## Features
 
-| **Light transport algorithms:** Kajiya path tracing (unidirectional, unbiased Monte Carlo estimation of the light transport equation). Direct-lighting (no indirect illumination) and path (full global illumination) integrators. | **Reflectance models and BRDFs:** Lambert diffuse model, Oren-Nayar diffuse model for rough surfaces, Fresnel perfectly specular model, and Fresnel glossy specular model (with Torrance-Sparrow microfacets with Beckmann-Spizzichino or Trowbridge-Reitz distributions). |
-| **Textures:** Floating-point and spectrum constant-value textures. Procedural checkerboard texture, antialiased with a box filter. Mipmapping. | **Materials:** Matte with either a perfect diffuse Lambertian BRDF or an Oren-Nayar BRDF for various degrees of roughness; plastic with diffuse and glossy specular BRDFs; mirror with a perfectly-specular BRDF; gold; glass with perfectly-specular BRDF and BTDF; diffuse substrate and glossy coat with an Ashikhmin-Shirley BRDF. |
+| **Light transport algorithms:** Kajiya path tracing (unidirectional, unbiased Monte Carlo estimation of the light transport equation). Direct-lighting (no indirect illumination) and path (full global illumination) integrators. | **Reflectance models and BRDFs:** Lambert diffuse model; Oren-Nayar diffuse model for rough surfaces; Fresnel perfectly specular model and Fresnel glossy specular model (with Torrance-Sparrow microfacets with Beckmann-Spizzichino or Trowbridge-Reitz distributions); Disney diffuse and retro-reflective BSDF. |
+| **Textures:** Floating-point and spectrum constant-value textures. Procedural checkerboard texture, antialiased with a box filter. Mipmapping. | **Materials:** Matte with either a perfect diffuse Lambertian BRDF or an Oren-Nayar BRDF for various degrees of roughness; plastic with diffuse and glossy specular BRDFs; mirror with a perfectly-specular BRDF; gold; glass with perfectly-specular BRDF and BTDF; diffuse substrate and glossy coat with an Ashikhmin-Shirley BRDF; Disney BSDF (diffuse and diffuse retro-reflection only). |
 | **Shapes:** Triangle meshes, single triangles, and spherical implicit surfaces. | **Accelerators:** BVH with 5 different primitive (or object) subdivision methods: linear BVH, hierarchical linear BVH, midpoint partitioning, equal counts partitioning, and surface area heuristic (SAH).|
 | **Samplers:** Uniform or jittered stratified pixel sampling for 1D samples and Latin Hypercube sampling for 2D samples. Samplers rely on a Permuted Congruential Generator (PCG) pseudo-random number generator. | **Filters:** Box, triangle, Gaussian, Mitchell-Netravali, and Lanczos windowed-sinc filters. |
 | **Lights:** Point, distant, and diffuse area light sources. An area light can take the form of any of the supported *shapes*. Infinite area light source backed by environment map. | **Cameras:** Thin lens perspective and orthographic projective cameras with configurable aperture and focal distance (for depth of field) and film aspect ratio. The perspective camera also has a configurable field of view. |
@@ -43,6 +43,20 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 **[Subsurface scattering and the BSSRDF](/blog/cpbrt/2022-08-09-subsurface-scattering-and-the-bssrdf)** (Aug 09, 2022, work in progress): A description of the Bidirectional Scattering Distribution Function (BSSRDF) and its role in simulating subsurface light transport.
 
 ## Select images
+
+***07/21/2023 Diffuse reflection and retro-reflection with a Disney BSDF.***
+{: style="text-align: center;"}
+The Disney BSDF is a mix of a number of BRDFs, BTDFs, and BSSRDFs controlled by a relatively large set of parameters. The model is physically-based for the most part, but it incorporates a couple of additional reflectance models for artistic control.
+
+The base diffuse BRDF adds a couple of Fresnel factors to the Lambertian BRDF to make the model physically-plausible. The resulting images are darker on object edges compared to measured data, though. To compensate, a diffuse retro-reflection BRDF parameterized by a roughness factor increases reflectance at grazing angles, brightening up the edges of objects. This can be appreciated in the following renders.
+
+My Disney BSDF implementation doesn't include the specular reflection and transmission components, the BSSRDF, or the sheen component yet. It is based on Burley's notes *Physically Based Shading at Disney* and it doesn't include the enhancements and corrections in Burley's *Extending the Disney BRDF to a BSDF with Integrated Subsurface Scattering*.
+
+{: style="text-align: justify;"}
+![](/assets/img/projects/cpbrt/26.png)
+{: style="text-align: center;"}
+![](/assets/img/projects/cpbrt/27.png)
+{: style="text-align: center;"}
 
 ***01/23/2023 Diffuse substrate and glossy coat with an Ashikhmin-Shirley BRDF.***
 {: style="text-align: center;"}
