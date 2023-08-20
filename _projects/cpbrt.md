@@ -21,14 +21,14 @@ sitemap: false
 * TOC
 {:toc}
 
-**CPBRT** is my physically-based, offline toy renderer. It is the result of studying ***[Physically Based Rendering: From Theory to Implementation](https://pbr-book.org/)*** (Pharr, Jakob, and Humphreys, 2016), writing down the code fragments provided by the authors, and filling in the gaps. For the longest time, I wanted to have a playground to learn interesting rendering techniques and try out new ideas. Taking inspiration from great rendering engineers like Yining Karl Li and his [Takua Renderer](https://www.yiningkarlli.com/projects/takuarender.html), Edward Liu and his [EDXRay](http://behindthepixels.io/EDXRay/), and Peter Kutz and his [Photorealizer](https://peterkutz.com/), I started CPBRT in November 2020 and it took me nearly 9 months to produce a 1st render with it; it was a tough, but infinitely rewarding experience.
+**CPBRT** is my physically-based, offline toy renderer. It is the result of studying ***[Physically Based Rendering: From Theory to Implementation](https://pbr-book.org/)*** (Pharr, Jakob, and Humphreys, 2016), writing down the code fragments provided by the authors, and filling in the gaps. I started CPBRT in November 2020 and it took me nearly 9 months to produce a 1st render with it; it was a tough but infinitely rewarding experience.
 
 Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/cpbrt)***.
 
 ## Features
 
-| **Light transport algorithms:** Kajiya path tracing (unidirectional, unbiased Monte Carlo estimation of the light transport equation). Direct-lighting (no indirect illumination) and path (full global illumination) integrators. | **Reflectance models and BRDFs:** Lambert diffuse model; Oren-Nayar diffuse model for rough surfaces; Fresnel perfectly specular model and Fresnel glossy specular model (with Torrance-Sparrow microfacets with Beckmann-Spizzichino or Trowbridge-Reitz distributions); Disney diffuse and retro-reflective BSDF. |
-| **Textures:** Floating-point and spectrum constant-value textures. Procedural checkerboard texture, antialiased with a box filter. Mipmapping. | **Materials:** Matte with either a perfect diffuse Lambertian BRDF or an Oren-Nayar BRDF for various degrees of roughness; plastic with diffuse and glossy specular BRDFs; mirror with a perfectly-specular BRDF; gold; glass with perfectly-specular BRDF and BTDF; diffuse substrate and glossy coat with an Ashikhmin-Shirley BRDF; Disney BSDF (diffuse and diffuse retro-reflection only). |
+| **Light transport algorithms:** Kajiya path tracing (unidirectional, unbiased Monte Carlo estimation of the light transport equation). Direct-lighting (no indirect illumination) and path (full global illumination) integrators. | **Reflectance models and BRDFs:** Lambert diffuse model; Oren-Nayar diffuse model for rough surfaces; Fresnel perfectly specular model and Fresnel glossy specular model (with Torrance-Sparrow microfacets with Beckmann-Spizzichino or Trowbridge-Reitz distributions); Disney diffuse, retro-reflective, and specular BSDF. |
+| **Textures:** Floating-point and spectrum constant-value textures. Procedural checkerboard texture, antialiased with a box filter. Mipmapping. | **Materials:** Matte with either a perfect diffuse Lambertian BRDF or an Oren-Nayar BRDF for various degrees of roughness; plastic with diffuse and glossy specular BRDFs; mirror with a perfectly-specular BRDF; gold; glass with perfectly-specular BRDF and BTDF; diffuse substrate and glossy coat with an Ashikhmin-Shirley BRDF; Disney BSDF (diffuse, diffuse retro-reflection, and specular reflection only). |
 | **Shapes:** Triangle meshes, single triangles, and spherical implicit surfaces. | **Accelerators:** BVH with 5 different primitive (or object) subdivision methods: linear BVH, hierarchical linear BVH, midpoint partitioning, equal counts partitioning, and surface area heuristic (SAH).|
 | **Samplers:** Uniform or jittered stratified pixel sampling for 1D samples and Latin Hypercube sampling for 2D samples. Samplers rely on a Permuted Congruential Generator (PCG) pseudo-random number generator. | **Filters:** Box, triangle, Gaussian, Mitchell-Netravali, and Lanczos windowed-sinc filters. |
 | **Lights:** Point, distant, and diffuse area light sources. An area light can take the form of any of the supported *shapes*. Infinite area light source backed by environment map. | **Cameras:** Thin lens perspective and orthographic projective cameras with configurable aperture and focal distance (for depth of field) and film aspect ratio. The perspective camera also has a configurable field of view. |
@@ -43,6 +43,22 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 **[Subsurface scattering and the BSSRDF](/blog/cpbrt/2022-08-09-subsurface-scattering-and-the-bssrdf)** (Aug 09, 2022, work in progress): A description of the Bidirectional Scattering Distribution Function (BSSRDF) and its role in simulating subsurface light transport.
 
 ## Select images
+
+***08/19/2023 Specular reflection with a Disney BSDF.***
+{: style="text-align: center;"}
+Burley's *Physically Based Shading at Disney* says that the model for specular reflection in the Disney material is simply the (Torrance-Sparrow) microfacet BRDF with a ***generalized form*** of the Trowbridge-Reitz distribution (GTR) given by
+
+$$
+\begin{aligned}
+D_{GTR}=\left(\frac{c}{\alpha^2\cos^2{\theta_h}+\sin^2{\theta_h}}\right)^\gamma
+\end{aligned}
+$$
+
+where $$c$$ is a scaling constant and $$\alpha$$ is a roughness parameter. As for the Smith masking-shadowing $$G$$ function, Burley says that any of the functions derived by Walter in *Microfacet models for refraction through rough surfaces* works. For simplicity, though, and while I muster the courage to dive into that paper, I'm using $$G$$ as implemented already in PBRT.
+
+{: style="text-align: justify;"}
+![](/assets/img/projects/cpbrt/28.png)
+{: style="text-align: center;"}
 
 ***07/21/2023 Diffuse reflection and retro-reflection with a Disney BSDF.***
 {: style="text-align: center;"}
