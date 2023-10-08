@@ -45,21 +45,6 @@ $navbar-height: 5rem;
     min-height: 0;
     max-height: $navbar-height;
     // >>>
-
-    // <<< link
-    $shadow-padding: 3rem;
-    &::before {
-      content: "";
-      position: absolute;
-      display: block;
-      width: calc(100% - #{$shadow-padding * 2});
-      height: $navbar-height;
-      left: $shadow-padding;
-      margin: auto;
-      box-shadow: 0 0 2rem rgba(0,0,0,0.25);
-      z-index: -1;
-    }
-    // >>>
   }
 
   // <<< link
