@@ -13,7 +13,7 @@
             {% for node in site.menu %}
               {% assign url = node.url | default: node.href %}
               <li style="float: left;">
-                <a style="display: block; text-align: center; padding: 16px; padding-top: 25px; text-decoration: none;"
+                <a style="display: block; text-align: center; padding: 8px; padding-top: 16px; text-decoration: none;"
                   {% if forloop.first %}id="_drawer--opened"{% endif %}
                   href="{% include_cached smart-url url=url %}"
                   class="sidebar-nav-item {% if node.external  %}external{% endif %}"
