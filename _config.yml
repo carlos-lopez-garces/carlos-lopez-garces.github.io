@@ -52,8 +52,8 @@ menu:
     url:               /blog/
   - title:             Projects
     url:               /projects/
-  - title:             Résumé
-    url:               /resume/
+  - title:             CV
+    url:               /assets/pdf/CV.pdf
   - title:             About me
     url:               /index.html
 
