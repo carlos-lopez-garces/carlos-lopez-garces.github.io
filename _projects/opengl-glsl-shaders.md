@@ -1,6 +1,6 @@
 ---
 layout: projects
-order: 4
+order: 5
 title: 'OpenGL/GLSL shaders'
 caption: A collection of GLSL shaders featuring various real-time rendering techniques. (Mesh by Keenan Crane.)
 description: >

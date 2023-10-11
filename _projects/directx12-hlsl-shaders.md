@@ -1,6 +1,6 @@
 ---
 layout: projects
-order: 3
+order: 4
 title: 'DirectX12/HLSL shaders'
 caption: A collection of HLSL shaders featuring various real-time rendering techniques. (Assets by Frank Luna.)
 description: >

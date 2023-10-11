@@ -4,6 +4,7 @@ title: About me
 selected_projects:
   - _projects/cpbrt.md
   - _projects/cdxr.md
+  - _projects/vulkan.md
   - _directx12-hlsl-shaders/hlsl-shadow-mapping.md
   - _directx12-hlsl-shaders/hlsl-stencil-mirrors.md
 projects_page: projects.md
