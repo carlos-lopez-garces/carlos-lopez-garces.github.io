@@ -24,7 +24,9 @@ Aside from learning these techniques, my objective is to make improvements and e
 
 Below, you'll find a series of summaries of and annotations for the contents of the book, and, hopefully, descriptions of improvements and extensions that I manage to make.
 
-- TODO: Variable rate shading.
+## Project blog posts
+
+- **[Variable rate shading](/blog/vulkan/2023-10-13-vulkan-variable-rate-shading)** (Oct 13, 2023, work in progress): A brief description of VRS, how the Raptor engine implements it, and my attempts to add a debug visualization.
 - TODO: Frame graphs.
 - TODO: GPU-driven rendering.
 - TODO: DDGI.
