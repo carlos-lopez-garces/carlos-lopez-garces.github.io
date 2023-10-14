@@ -2,9 +2,9 @@
 layout: project
 order: 2
 title: 'CDXR'
-caption: A hybrid rasterization-raytracing renderer based on DirectX 12 and DirectX Raytracing.
+caption: A hybrid rasterization-raytracing renderer based on DirectX 12, DirectX Raytracing, and NVIDIA's Falcor.
 description: >
-  A hybrid rasterization-raytracing renderer based on DirectX 12 and DirectX Raytracing.
+  A hybrid rasterization-raytracing renderer based on DirectX 12, DirectX Raytracing, and NVIDIA's Falcor.
 date: '01-01-2022'
 image: 
   path: /assets/img/projects/cdxr.png
@@ -18,7 +18,7 @@ links:
 sitemap: false
 ---
 
-**CDXR** is my real-time toy renderer. Based on the [Falcor](https://github.com/NVIDIAGameWorks/Falcor) framework and the DirectX Raytracing API, CDXR implements a hybrid rasterization-raytracing configurable pipeline. For writing this renderer, I relied a lot on Chris Wyman's SIGGRAPH courses and the Ray Tracing Gems series.
+**CDXR** is my real-time toy renderer. Based on the [Falcor](https://github.com/NVIDIAGameWorks/Falcor) framework and the DirectX Raytracing API and following Chris Wyman's SIGGRAPH courses and the Raytracing Gems series, CDXR implements a hybrid rasterization-raytracing configurable pipeline.
 
 Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/cdxr)***.
 

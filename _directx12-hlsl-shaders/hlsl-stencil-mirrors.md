@@ -3,7 +3,7 @@ layout: project
 order: 2
 date: '23-01-2023'
 title: 'Stencil mirrors'
-caption: Planar mirror reflections using a stencil test in DirectX 12 / HLSL.
+caption: Planar mirror reflections using a stencil test in DirectX 12 / HLSL. (Assets by Frank Luna.)
 image: 
   path: /assets/img/projects/directx12-hlsl-shaders/hlsl-stencil-mirrors/hlsl-stencil-mirrors.png
   srcset: 
