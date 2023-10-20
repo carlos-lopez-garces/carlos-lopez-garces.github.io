@@ -1,10 +1,9 @@
 ---
 layout: post
 title:  "Stencil mirrors with DirectX 12"
+image:
+  path: /assets/img/projects/directx12-hlsl-shaders/hlsl-stencil-mirrors/8.png
 ---
-
-![](/assets/img/projects/directx12-hlsl-shaders/hlsl-stencil-mirrors/8.png)
-{: style="text-align: center"}
 
 * TOC
 {:toc}
