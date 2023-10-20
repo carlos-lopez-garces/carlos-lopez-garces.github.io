@@ -44,6 +44,13 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 
 ## Select images
 
+***08/31/2023 Live viewer.***
+{: style="text-align: center;"}
+A Vulkan-based live viewer that renders the contents of the film, running concurrently on a thread. At the moment, only the final contents are rendered, but the idea is for it to display the contents of the film in real time as the render progresses. Since runs typically take a very long time, this should help me catch errors earlier and reduce debugging time.
+
+![](/assets/img/projects/cpbrt/29.png)
+{: style="text-align: center;"}
+
 ***08/19/2023 Specular reflection with a Disney BSDF.***
 {: style="text-align: center;"}
 Burley's *Physically Based Shading at Disney* says that the model for specular reflection in the Disney material is simply the (Torrance-Sparrow) microfacet BRDF with a ***generalized form*** of the Trowbridge-Reitz distribution (GTR) given by

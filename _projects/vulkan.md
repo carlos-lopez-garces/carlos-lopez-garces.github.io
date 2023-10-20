@@ -1,7 +1,7 @@
 ---
 layout: project
 order: 3
-title: 'Vulkan Renderer Study'
+title: 'Vulkan Renderer study'
 caption: A study of the Vulkan renderer of the book Mastering Graphics Programming with Vulkan by Castorina and Sassone.
 description: >
   A study of the Vulkan renderer of the book Mastering Graphics Programming with Vulkan by Castorina and Sassone.
