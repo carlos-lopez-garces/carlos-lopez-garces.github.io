@@ -2,7 +2,7 @@
 layout: projects
 order: 4
 title: 'DirectX12/HLSL shaders'
-caption: A collection of HLSL shaders featuring various real-time rendering techniques. (Assets by Frank Luna.)
+caption: A collection of HLSL shaders featuring various real-time rendering techniques, including shadow mapping and stencil mirrors.
 description: >
   A collection of HLSL shaders featuring various real-time rendering techniques.
 image: 
@@ -18,3 +18,5 @@ sitemap: false
 show_collection: directx12-hlsl-shaders
 no_groups: true
 ---
+
+Assets by Frank Luna.
