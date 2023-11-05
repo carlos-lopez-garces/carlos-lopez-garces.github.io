@@ -4,8 +4,8 @@ title: About me
 selected_projects:
   - _projects/cpbrt.md
   - _projects/cdxr.md
-  - _projects/vulkan.md
   - _projects/directx12-hlsl-shaders.md
+  - _projects/vulkan.md
 projects_page: projects.md
 posts_page: /blog/
 ---
