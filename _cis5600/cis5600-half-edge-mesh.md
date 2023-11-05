@@ -1,7 +1,7 @@
 ---
 layout: project
 order: 2
-date: '29-09-2023'
+date: '25-10-2023'
 title: 'Half-edge meshes and Catmull-Clark subdivision'
 caption: Catmull-Clark mesh subdivision, edge splitting, and face triangulation implemented on a half-edge data structure.
 image: 
@@ -14,7 +14,7 @@ sitemap: false
 no_groups: true
 ---
 
-In this project, we wrote code for importing .obj meshes and converting them to a [half-edge mesh data-structure](https://en.wikipedia.org/wiki/Doubly_connected_edge_list){:target="_blank"} that supports arbitrary edge splitting, face triangulation, and [Catmull-Clark subdivision](https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface){:target="_blank"} (mesh smoothing).
+In this project, I wrote code for importing .obj meshes and converting them to a [half-edge mesh data-structure](https://en.wikipedia.org/wiki/Doubly_connected_edge_list){:target="_blank"} that supports arbitrary edge splitting, face triangulation, and [Catmull-Clark subdivision](https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface){:target="_blank"} (mesh smoothing).
 
 A half-edge datastructure encodes mesh adjacency and connectivity, requires constant-size storage, enforces proper topology, and can be traversed starting from any arbitrary component (face, vertex, or half-edge).
 
