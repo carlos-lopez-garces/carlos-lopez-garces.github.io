@@ -1,6 +1,6 @@
 ---
 layout: projects
-order: 5
+order: 4
 title: 'M.S. Computer Graphics at UPenn'
 caption: Course projects of the CGGT graduate program at UPenn.
 description: >
