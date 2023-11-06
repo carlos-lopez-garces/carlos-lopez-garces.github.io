@@ -320,6 +320,10 @@ collections:
     permalink:         /projects/upenn/cis5600-interactive-computer-graphics/:path/
     output:            true
 
+  cis5620:
+    permalink:         /projects/upenn/cis5620-animation/:path/
+    output:            true
+
 # File inclusion/exclusion
 # ----------------------------------------------------------------------------------------
 
