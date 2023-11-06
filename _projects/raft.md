@@ -1,6 +1,6 @@
 ---
 layout: project
-order: 8
+order: 9
 title: 'Raft consensus algorithm'
 caption: My implementation of the Raft consensus algorithm.
 description: >

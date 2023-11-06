@@ -312,6 +312,14 @@ collections:
     permalink:         /projects/directx12-hlsl-shaders/:path/
     output:            true
 
+  upenn:
+    permalink:         /projects/upenn/:path/
+    output:            true
+
+  cis5600:
+    permalink:         /projects/upenn/cis5600-interactive-computer-graphics/:path/
+    output:            true
+
 # File inclusion/exclusion
 # ----------------------------------------------------------------------------------------
 

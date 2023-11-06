@@ -1,6 +1,6 @@
 ---
 layout: project
-order: 6
+order: 7
 title: 'Real-time path tracing Shadertoy'
 caption: My implementation of Alan Wolfe's real-time path tracer (blog.demofox.org).
 description: >

@@ -1,6 +1,6 @@
 ---
 layout: project
-order: 7
+order: 8
 title: 'Ray Tracing in One Weekend'
 caption: My implementation of Peter Shirley's Ray Tracing in One Weekend.
 description: >
