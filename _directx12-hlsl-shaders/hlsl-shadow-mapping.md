@@ -19,6 +19,11 @@ sitemap: false
 * TOC
 {:toc}
 
+{: style="text-align: center;"}
+<video muted controls width="100%" preload="auto">
+    <source src="/assets/img/projects/directx12-hlsl-shaders/hlsl-shadow-mapping/1.mp4" type="video/mp4">
+</video>
+
 The basic shadow mapping algorithm renders the scene depth to a texture (i.e. the shadow map) from the viewpoint of the light source. The resulting rendered fragments cannot be in shadow because they have a nonoccluded line of sight with the light source. The shadow map will thus contain the depth values of all the visible fragments from the perspective of the light.
 
 The shadow mapping algorithm does 2 render passes: 1) a ***shadow pass*** that renders the scene depth from the viewpoint of the light into the shadow map; and 2) a ***main pass*** that renders the scene as usual to the back buffer from the viewpoint of the camera, using the shadow map in the shader.
