@@ -28,6 +28,11 @@ The basic shadow mapping algorithm renders the scene depth to a texture (i.e. th
 
 The shadow mapping algorithm does 2 render passes: 1) a ***shadow pass*** that renders the scene depth from the viewpoint of the light into the shadow map; and 2) a ***main pass*** that renders the scene as usual to the back buffer from the viewpoint of the camera, using the shadow map in the shader.
 
+{: style="text-align: center;"}
+<video muted controls width="100%" preload="auto">
+    <source src="/assets/img/projects/directx12-hlsl-shaders/hlsl-shadow-mapping/2.mp4" type="video/mp4">
+</video>
+
 ## Rendering the shadow map: the shadow pass
 
 The shadow map is really a depth/stencil buffer, so we take advantage of the built-in depth buffer creation of the hardware graphics pipeline. Since we let the hardware do it, we don't need CPU access to it, so a default heap (D3D12_HEAP_TYPE_DEFAULT) instead of an upload heap is where we create the shadow map's resource.
