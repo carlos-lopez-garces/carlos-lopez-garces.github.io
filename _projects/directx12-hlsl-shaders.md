@@ -17,6 +17,7 @@ links:
 sitemap: false
 show_collection: directx12-hlsl-shaders
 no_groups: true
+permalink: /projects/cdx/
 ---
 
 **CDX** is my real-time toy renderer, which I use to learn real-time **rasterized** rendering techniques, as well as the DirectX 12 API. Unlike [**CDXR**](/_projects/cdxr), which uses NVIDIA's Falcor framework, CDX issues DirectX 12 calls directly. I'm putting this renderer together out of foundational code found in the book [*Introduction to 3D Game Programming with DirectX 12*](https://www.d3dcoder.net/d3d12.htm){:target="_blank"} by Frank Luna.
