@@ -19,10 +19,14 @@ sitemap: false
 * TOC
 {:toc}
 
+I implemented the standard shadow mapping technique back in 2022 using a simple scene found in the book [*Introduction to 3D Game Programming with DirectX 12*](https://www.d3dcoder.net/d3d12.htm){:target="_blank"}. Now that I wrote a glTF loader for **[CDX](/_projects/directx12-hlsl-shaders.md)**, I'm adjusting existing code to make it work for bigger and more complex scenes. This video shows shadows produced by this technique on the Sponza scene; it looks far from perfect at the moment, but I'm working on it.
+
 {: style="text-align: center;"}
 <video muted controls width="100%" preload="auto">
     <source src="/assets/img/projects/directx12-hlsl-shaders/hlsl-shadow-mapping/1.mp4" type="video/mp4">
 </video>
+
+## Overview
 
 The basic shadow mapping algorithm renders the scene depth to a texture (i.e. the shadow map) from the viewpoint of the light source. The resulting rendered fragments cannot be in shadow because they have a nonoccluded line of sight with the light source. The shadow map will thus contain the depth values of all the visible fragments from the perspective of the light.
 
