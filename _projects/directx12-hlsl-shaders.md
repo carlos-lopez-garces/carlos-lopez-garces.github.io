@@ -29,3 +29,4 @@ Check out the implementation details by clicking on the cards below.
 - glTF loader.
 - **Shadow mapping.** 
 - Stencil mirrors.
+- **Screen space ambient occlusion.**

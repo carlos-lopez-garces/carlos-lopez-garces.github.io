@@ -1,6 +1,6 @@
 ---
 layout: project
-order: 2
+order: 3
 date: '23-01-2023'
 title: 'Stencil mirrors'
 caption: Planar mirror reflections using a stencil test in DirectX 12 / HLSL. (Assets by Frank Luna.)
