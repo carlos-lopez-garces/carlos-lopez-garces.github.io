@@ -52,7 +52,7 @@ The operation is simple, but perhaps not optimal: a second film is shared betwee
 
 There's surely a better scheme for sharing film updates with the live viewer thread. The constant recreation of the staging VkBuffer, VkImage, and VkImageView is probably not optimal either. These are things I want to investigate next.
 
-The video shows a film of 512x512 resolution, divided into 64x64 pixel tiles. My CPU has 12 logical processors (6 cores), so up to 11 threads render tiles simultaneously and 1 runs the live viewer. 
+The video shows a film of 512x512 resolution, divided into 64x64 pixel tiles. My CPU has 12 logical processors (6 cores), so up to 11 threads render tiles simultaneously using 1 spp and 1 runs the live viewer. 
 
 {: style="text-align: center;"}
 <video muted controls width="100%" preload="auto">
