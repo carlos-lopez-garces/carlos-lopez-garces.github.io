@@ -32,7 +32,7 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 | **Shapes:** Triangle meshes, single triangles, and spherical implicit surfaces. | **Accelerators:** BVH with 5 different primitive (or object) subdivision methods: linear BVH, hierarchical linear BVH, midpoint partitioning, equal counts partitioning, and surface area heuristic (SAH).|
 | **Samplers:** Uniform or jittered stratified pixel sampling for 1D samples and Latin Hypercube sampling for 2D samples. Samplers rely on a Permuted Congruential Generator (PCG) pseudo-random number generator. | **Filters:** Box, triangle, Gaussian, Mitchell-Netravali, and Lanczos windowed-sinc filters. |
 | **Lights:** Point, distant, and diffuse area light sources. An area light can take the form of any of the supported *shapes*. Infinite area light source backed by environment map. | **Cameras:** Thin lens perspective and orthographic projective cameras with configurable aperture and focal distance (for depth of field) and film aspect ratio. The perspective camera also has a configurable field of view. |
-| **Participating media:** Homogeneous-density and grid-based variable-density media. | |
+| **Participating media:** Homogeneous-density and grid-based variable-density media. | **Live viewer:** One thread runs a Vulkan rasterization pipeline that renders the film to a full-screen quad concurrently. |
 
 ## Project blog posts
 
@@ -43,6 +43,21 @@ Check out the source code on ***[Github](https://github.com/carlos-lopez-garces/
 **[Subsurface scattering and the BSSRDF](/blog/cpbrt/2022-08-09-subsurface-scattering-and-the-bssrdf)** (Aug 09, 2022, work in progress): A description of the Bidirectional Scattering Distribution Function (BSSRDF) and its role in simulating subsurface light transport.
 
 ## Select images
+
+***01/24/2024 First working version of live viewer.***
+{: style="text-align: center;"}
+The offline renderer divides the film into tiles. Each of the threads of a thread pool grabs one and renders to it, moving on to other tiles as they finish with them. A dedicated thread runs a Vulkan rasterization pipeline that displays the contents of the film simultaneously.
+
+The operation is simple, but perhaps not optimal: a second film is shared between the tile rendering threads and the live viewer thread. The live viewer thread waits on a condition variable that tile rendering threads signal every time they finish processing a pixel sample and merging it with the second, shared film. Upon waking up, the live viewer thread obtains the (filtered) contents of this film as a uint8_t[], maps them to a staging VkBuffer, copies the data to it, creates a VkImage, and copies the staging buffer to the image; it also recreates the associated VkImageView and updates the descriptor set to make the film's contents available to the fragment shader in a texture; the texture is then mapped to a full-screen quad in the fragment shader.
+
+There's surely a better scheme for sharing film updates with the live viewer thread. The constant recreation of the staging VkBuffer, VkImage, and VkImageView is probably not optimal either. These are things I want to investigate next.
+
+The video shows a film of 512x512 resolution, divided into 64x64 pixel tiles. My CPU has 12 logical processors (6 cores), so up to 11 threads render tiles simultaneously and 1 runs the live viewer. 
+
+{: style="text-align: center;"}
+<video muted controls width="100%" preload="auto">
+    <source src="/assets/img/projects/cpbrt/31.mp4" type="video/mp4">
+</video>
 
 ***08/31/2023 Live viewer.***
 {: style="text-align: center;"}
